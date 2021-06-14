@@ -1,3 +1,9 @@
+.section ".bss"
+.common datak, 400,4
+
+
+
+
 .section ".text"
 .align 4
 .global sscal

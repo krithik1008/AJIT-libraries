@@ -365,6 +365,8 @@ main:
 	.asciz	"unsigned int"
 .LASF15:
 	.asciz	"main.c"
+.LASF16:
+	.asciz	"/home/ayush/eys/ajit-toolchain/wkspace/AJIT-libraries/xscal/sscal"
 .LASF14:
 	.asciz	"GNU C 4.7.4"
 .LASF3:
@@ -393,7 +395,5 @@ main:
 	.asciz	"short int"
 .LASF9:
 	.asciz	"sizetype"
-.LASF16:
-	.asciz	"/home/ayush/eys/ajit-toolchain/wkspace/Untitled Folder"
 	.ident	"GCC: (Buildroot 2014.08-g03a6b53) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits
