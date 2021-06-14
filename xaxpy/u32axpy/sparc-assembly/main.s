@@ -2,87 +2,49 @@
 	.section	".text"
 .Ltext0:
 	.cfi_sections	.debug_frame
-	.section	".rodata"
-	.align 4
-.LC0:
-	.long	1082130432
-	.align 4
-.LC1:
-	.long	1077936128
-	.align 4
-.LC2:
-	.long	1073741824
-	.align 4
-.LC3:
-	.long	1084227584
-	.align 4
-.LC4:
-	.long	1065353216
-	.align 4
-.LC5:
-	.long	1066192077
-	.section	".text"
 	.align 4
 	.global main
 	.type	main, #function
-	.proc	0106
+	.proc	0116
 main:
 .LFB0:
 	.file 1 "main.c"
-	.loc 1 4 0
+	.loc 1 17 0
 	.cfi_startproc
 	save	%sp, -144, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
-	.loc 1 5 0
+	.loc 1 18 0
 	mov	4, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
 	mov	1, %g1
 	st	%g1, [%fp-12]
-	.loc 1 6 0
-	sethi	%hi(.LC0), %g1
-	or	%g1, %lo(.LC0), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-32]
-	sethi	%hi(.LC1), %g1
-	or	%g1, %lo(.LC1), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-28]
-	sethi	%hi(.LC2), %g1
-	or	%g1, %lo(.LC2), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-24]
-	sethi	%hi(.LC3), %g1
-	or	%g1, %lo(.LC3), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-20]
-	.loc 1 7 0
-	sethi	%hi(.LC4), %g1
-	or	%g1, %lo(.LC4), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-48]
-	sethi	%hi(.LC2), %g1
-	or	%g1, %lo(.LC2), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-44]
-	sethi	%hi(.LC1), %g1
-	or	%g1, %lo(.LC1), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-40]
-	sethi	%hi(.LC0), %g1
-	or	%g1, %lo(.LC0), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-36]
-	.loc 1 8 0
-	sethi	%hi(.LC5), %g1
-	or	%g1, %lo(.LC5), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-16]
-	.loc 1 9 0
+	.loc 1 19 0
+	mov	4, %g1
+	st	%g1, [%fp-32]
+	mov	2, %g1
+	st	%g1, [%fp-28]
+	mov	3, %g1
+	st	%g1, [%fp-24]
+	mov	4, %g1
+	st	%g1, [%fp-20]
+	.loc 1 20 0
+	mov	2, %g1
+	st	%g1, [%fp-48]
+	mov	4, %g1
+	st	%g1, [%fp-44]
+	mov	3, %g1
+	st	%g1, [%fp-40]
+	mov	4, %g1
+	st	%g1, [%fp-36]
+	.loc 1 21 0
+	mov	3, %g1
+	st	%g1, [%fp-16]
+	.loc 1 22 0
 	add	%fp, -32, %g2
 	add	%fp, -48, %g1
 	ld	[%fp-4], %o0
@@ -91,10 +53,10 @@ main:
 	ld	[%fp-8], %o3
 	mov	%g1, %o4
 	ld	[%fp-12], %o5
-	call	saxpy, 0
+	call	u32axpy, 0
 	 nop
 	mov	%o0, %g1
-	.loc 1 10 0
+	.loc 1 23 0
 	mov	%g1, %i0
 	restore
 	jmp	%o7+8
@@ -105,15 +67,15 @@ main:
 .Letext0:
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.uaword	0xfb
+	.uaword	0xf4
 	.uahalf	0x2
 	.uaword	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.uaword	.LASF15
+	.uaword	.LASF14
 	.byte	0x1
+	.uaword	.LASF15
 	.uaword	.LASF16
-	.uaword	.LASF17
 	.uaword	.Ltext0
 	.uaword	.Letext0
 	.uaword	.Ldebug_line0
@@ -167,9 +129,9 @@ main:
 	.uaword	.LASF10
 	.uleb128 0x4
 	.byte	0x1
-	.uaword	.LASF18
+	.uaword	.LASF17
 	.byte	0x1
-	.byte	0x3
+	.byte	0x10
 	.uaword	0xe5
 	.uaword	.LFB0
 	.uaword	.LFE0
@@ -179,7 +141,7 @@ main:
 	.uleb128 0x5
 	.asciz	"n"
 	.byte	0x1
-	.byte	0x5
+	.byte	0x12
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -187,7 +149,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF11
 	.byte	0x1
-	.byte	0x5
+	.byte	0x12
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -195,7 +157,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF12
 	.byte	0x1
-	.byte	0x5
+	.byte	0x12
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -203,37 +165,33 @@ main:
 	.uleb128 0x5
 	.asciz	"x"
 	.byte	0x1
-	.byte	0x6
-	.uaword	0xf2
+	.byte	0x13
+	.uaword	0xeb
 	.byte	0x2
 	.byte	0x91
 	.sleb128 -32
 	.uleb128 0x5
 	.asciz	"y"
 	.byte	0x1
-	.byte	0x7
-	.uaword	0xf2
+	.byte	0x14
+	.uaword	0xeb
 	.byte	0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x6
 	.uaword	.LASF13
 	.byte	0x1
-	.byte	0x8
-	.uaword	0xeb
+	.byte	0x15
+	.uaword	0x25
 	.byte	0x2
 	.byte	0x91
 	.sleb128 -16
 	.byte	0
 	.uleb128 0x7
 	.byte	0x4
-	.uaword	0xeb
-	.uleb128 0x2
-	.byte	0x4
-	.byte	0x4
-	.uaword	.LASF14
+	.uaword	0x25
 	.uleb128 0x8
-	.uaword	0xeb
+	.uaword	0x25
 	.uleb128 0x9
 	.uaword	0x6b
 	.byte	0x3
@@ -397,21 +355,21 @@ main:
 	.asciz	"long long int"
 .LASF0:
 	.asciz	"unsigned int"
-.LASF17:
-	.asciz	"/home/krithik/Desktop/marshal/ajit-toolchain/workspace/saxpy"
-.LASF15:
+.LASF14:
 	.asciz	"GNU C 4.7.4"
 .LASF3:
 	.asciz	"long unsigned int"
 .LASF7:
 	.asciz	"long long unsigned int"
+.LASF16:
+	.asciz	"/home/krithik/Desktop/marshal/ajit-toolchain/workspace/xaxpy/u32axpy"
 .LASF10:
 	.asciz	"char"
 .LASF1:
 	.asciz	"unsigned char"
-.LASF18:
+.LASF17:
 	.asciz	"main"
-.LASF16:
+.LASF15:
 	.asciz	"main.c"
 .LASF8:
 	.asciz	"long int"
@@ -425,8 +383,6 @@ main:
 	.asciz	"short unsigned int"
 .LASF4:
 	.asciz	"signed char"
-.LASF14:
-	.asciz	"float"
 .LASF5:
 	.asciz	"short int"
 .LASF9:
