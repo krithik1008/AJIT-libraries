@@ -1,3 +1,7 @@
+!author : Ayush Mittal 
+!email  : mittalayush129@gmail.com
+!date   : 14th June 2021
+
 .section ".bss"
 .common datak, 400,4
 

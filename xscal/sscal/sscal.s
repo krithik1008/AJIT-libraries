@@ -1,7 +1,9 @@
+!author : Ayush Mittal, Krithik sankar 
+!email  : mittalayush129@gmail.com, krithik.sankar10@gmail.com
+!date   : 10th June 2021
+
 .section ".bss"
 .common datak, 400,4
-
-
 
 
 .section ".text"

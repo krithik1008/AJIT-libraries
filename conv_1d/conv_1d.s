@@ -1,8 +1,14 @@
+!author : Ayush Mittal, Krithik sankar 
+!email  : mittalayush129@gmail.com, krithik.sankar10@gmail.com
+!date   : 9th June 2021
+
+
 .section	".data"
 .align 8
       ZERO: .double 0
 
-
+.section ".bss"
+.common set_data,400,4
 
 .section ".text"
 .align 4

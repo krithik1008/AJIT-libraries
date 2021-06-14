@@ -5,6 +5,9 @@
 !Returns the array index (int) of the first maximum absolute value 
 !result stored in %i0
 
+.section ".bss"
+.common datak,400,4
+
 .section ".text"
 .align 4
 .global isamax

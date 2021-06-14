@@ -2,52 +2,105 @@
 	.section	".text"
 .Ltext0:
 	.cfi_sections	.debug_frame
+	.section	".rodata"
+	.align 4
+.LC0:
+	.long	1084437299
+	.align 4
+.LC1:
+	.long	1077936128
+	.align 4
+.LC2:
+	.long	1073741824
+	.align 4
+.LC3:
+	.long	1084227584
+	.align 4
+.LC4:
+	.long	1067030938
+	.align 4
+.LC5:
+	.long	1082130432
+	.align 4
+.LC6:
+	.long	1075000115
+	.section	".text"
 	.align 4
 	.global main
 	.type	main, #function
-	.proc	0116
+	.proc	06
 main:
 .LFB0:
 	.file 1 "main.c"
-	.loc 1 23 0
+	.loc 1 17 0
 	.cfi_startproc
-	save	%sp, -136, %sp
+	save	%sp, -152, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
-	.loc 1 24 0
-	mov	6, %g1
+	.loc 1 18 0
+	mov	5, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
-	.loc 1 25 0
-	mov	4, %g1
-	st	%g1, [%fp-36]
-	mov	3, %g1
-	st	%g1, [%fp-32]
-	mov	2, %g1
-	st	%g1, [%fp-28]
-	mov	5, %g1
-	st	%g1, [%fp-24]
 	mov	1, %g1
-	st	%g1, [%fp-20]
-	mov	7, %g1
-	st	%g1, [%fp-16]
-	.loc 1 26 0
-	mov	100, %g1
 	st	%g1, [%fp-12]
-	.loc 1 27 0
-	add	%fp, -36, %g1
+	.loc 1 19 0
+	sethi	%hi(.LC0), %g1
+	or	%g1, %lo(.LC0), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-32]
+	sethi	%hi(.LC1), %g1
+	or	%g1, %lo(.LC1), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-28]
+	sethi	%hi(.LC2), %g1
+	or	%g1, %lo(.LC2), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-24]
+	sethi	%hi(.LC3), %g1
+	or	%g1, %lo(.LC3), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-20]
+	sethi	%hi(.LC4), %g1
+	or	%g1, %lo(.LC4), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-16]
+	.loc 1 20 0
+	sethi	%hi(.LC2), %g1
+	or	%g1, %lo(.LC2), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-52]
+	sethi	%hi(.LC2), %g1
+	or	%g1, %lo(.LC2), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-48]
+	sethi	%hi(.LC1), %g1
+	or	%g1, %lo(.LC1), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-44]
+	sethi	%hi(.LC5), %g1
+	or	%g1, %lo(.LC5), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-40]
+	sethi	%hi(.LC6), %g1
+	or	%g1, %lo(.LC6), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-36]
+	.loc 1 21 0
+	add	%fp, -32, %g2
+	add	%fp, -52, %g1
 	ld	[%fp-4], %o0
-	ld	[%fp-12], %o1
-	mov	%g1, %o2
-	ld	[%fp-8], %o3
-	call	u32scal, 0
+	mov	%g2, %o1
+	ld	[%fp-8], %o2
+	mov	%g1, %o3
+	ld	[%fp-12], %o4
+	call	sdot, 0
 	 nop
-	mov	%o0, %g1
-	.loc 1 28 0
-	mov	%g1, %i0
+	fmovs	%f0, %f8
+	.loc 1 22 0
+	fmovs	%f8, %f0
 	restore
 	jmp	%o7+8
 	 nop
@@ -57,15 +110,15 @@ main:
 .Letext0:
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.uaword	0xdc
+	.uaword	0xe7
 	.uahalf	0x2
 	.uaword	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.uaword	.LASF13
-	.byte	0x1
 	.uaword	.LASF14
+	.byte	0x1
 	.uaword	.LASF15
+	.uaword	.LASF16
 	.uaword	.Ltext0
 	.uaword	.Letext0
 	.uaword	.Ldebug_line0
@@ -119,19 +172,19 @@ main:
 	.uaword	.LASF10
 	.uleb128 0x4
 	.byte	0x1
-	.uaword	.LASF16
+	.uaword	.LASF17
 	.byte	0x1
-	.byte	0x16
-	.uaword	0xcd
+	.byte	0x10
+	.uaword	0xd7
 	.uaword	.LFB0
 	.uaword	.LFE0
 	.uaword	.LLST0
 	.byte	0x1
-	.uaword	0xcd
+	.uaword	0xd7
 	.uleb128 0x5
 	.asciz	"n"
 	.byte	0x1
-	.byte	0x18
+	.byte	0x12
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -139,36 +192,45 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF11
 	.byte	0x1
-	.byte	0x18
+	.byte	0x12
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
 	.sleb128 -8
-	.uleb128 0x5
-	.asciz	"arr"
-	.byte	0x1
-	.byte	0x19
-	.uaword	0xd3
-	.byte	0x2
-	.byte	0x91
-	.sleb128 -36
 	.uleb128 0x6
 	.uaword	.LASF12
 	.byte	0x1
-	.byte	0x1a
-	.uaword	0x25
+	.byte	0x12
+	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
 	.sleb128 -12
+	.uleb128 0x5
+	.asciz	"x"
+	.byte	0x1
+	.byte	0x13
+	.uaword	0xde
+	.byte	0x2
+	.byte	0x91
+	.sleb128 -32
+	.uleb128 0x5
+	.asciz	"y"
+	.byte	0x1
+	.byte	0x14
+	.uaword	0xde
+	.byte	0x2
+	.byte	0x91
+	.sleb128 -52
 	.byte	0
-	.uleb128 0x7
+	.uleb128 0x2
 	.byte	0x4
-	.uaword	0x25
+	.byte	0x4
+	.uaword	.LASF13
+	.uleb128 0x7
+	.uaword	0xd7
 	.uleb128 0x8
-	.uaword	0x25
-	.uleb128 0x9
 	.uaword	0x6b
-	.byte	0x5
+	.byte	0x4
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
@@ -270,22 +332,13 @@ main:
 	.byte	0
 	.byte	0
 	.uleb128 0x7
-	.uleb128 0xf
-	.byte	0
-	.uleb128 0xb
-	.uleb128 0xb
-	.uleb128 0x49
-	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x8
 	.uleb128 0x1
 	.byte	0x1
 	.uleb128 0x49
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x9
+	.uleb128 0x8
 	.uleb128 0x21
 	.byte	0
 	.uleb128 0x49
@@ -330,10 +383,6 @@ main:
 .LASF0:
 	.asciz	"unsigned int"
 .LASF14:
-	.asciz	"main.c"
-.LASF15:
-	.asciz	"/home/krithik/Desktop/marshal/ajit-toolchain/workspace/xscal/u32scal "
-.LASF13:
 	.asciz	"GNU C 4.7.4"
 .LASF3:
 	.asciz	"long unsigned int"
@@ -343,21 +392,27 @@ main:
 	.asciz	"char"
 .LASF1:
 	.asciz	"unsigned char"
-.LASF16:
+.LASF17:
 	.asciz	"main"
+.LASF15:
+	.asciz	"main.c"
 .LASF8:
 	.asciz	"long int"
-.LASF12:
-	.asciz	"alpha"
 .LASF11:
 	.asciz	"incx"
+.LASF12:
+	.asciz	"incy"
 .LASF2:
 	.asciz	"short unsigned int"
 .LASF4:
 	.asciz	"signed char"
+.LASF13:
+	.asciz	"float"
 .LASF5:
 	.asciz	"short int"
 .LASF9:
 	.asciz	"sizetype"
+.LASF16:
+	.asciz	"/home/krithik/Desktop/marshal/ajit-toolchain/workspace/xdot/sdot"
 	.ident	"GCC: (Buildroot 2014.08-g03a6b53-dirty) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits
