@@ -28,8 +28,8 @@ switch(n)
 unsigned short int *u16scal(int n , unsigned short int alpha , unsigned short int *arr, int incx);
 unsigned short int *main()
 {
-	int n=5,incx=1;	
-	unsigned short int arr[5]={2,5,100,8,4};
+	int n=4,incx=1;	
+	unsigned short int arr[4]={2,1,1,100};
 	unsigned short int alpha=100;
 	return u16scal(n,alpha,&arr[0],incx);
 }

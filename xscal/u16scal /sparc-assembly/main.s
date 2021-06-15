@@ -17,20 +17,18 @@ main:
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
 	.loc 1 31 0
-	mov	5, %g1
+	mov	4, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
 	.loc 1 32 0
 	mov	2, %g1
-	sth	%g1, [%fp-20]
-	mov	5, %g1
 	sth	%g1, [%fp-18]
-	mov	100, %g1
+	mov	1, %g1
 	sth	%g1, [%fp-16]
-	mov	8, %g1
+	mov	1, %g1
 	sth	%g1, [%fp-14]
-	mov	4, %g1
+	mov	100, %g1
 	sth	%g1, [%fp-12]
 	.loc 1 33 0
 	mov	100, %g1
@@ -39,7 +37,7 @@ main:
 	lduh	[%fp-10], %g1
 	sll	%g1, 16, %g1
 	srl	%g1, 16, %g2
-	add	%fp, -20, %g1
+	add	%fp, -18, %g1
 	ld	[%fp-4], %o0
 	mov	%g2, %o1
 	mov	%g1, %o2
@@ -152,7 +150,7 @@ main:
 	.uaword	0xd3
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -20
+	.sleb128 -18
 	.uleb128 0x6
 	.uaword	.LASF12
 	.byte	0x1
@@ -169,7 +167,7 @@ main:
 	.uaword	0x33
 	.uleb128 0x9
 	.uaword	0x6b
-	.byte	0x4
+	.byte	0x3
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits

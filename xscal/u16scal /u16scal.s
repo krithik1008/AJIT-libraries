@@ -32,7 +32,6 @@ u16scal:
         mov %l0, %l1		! 4 alphas delay slot filling
 
 body: 
-      	add  %l4, %l4, %g1	! base i with offser
       	add  %i2, %g1, %g2	! arr + 0
      	lduh [ %g2 ], %l2	![arr]
 	lduh [ %g2 + 2 ], %g3	![arr+1]
@@ -63,29 +62,28 @@ body:
 while:  
         cmp  %i0, 3
  	bg  body
-	nop
+	add  %l4, %l4, %g1	! base i with offser
 
-	add %l4, %l4, %g1
 case: 
       	cmp  %i0, 2
-        be  two
-      	nop
+        be,a  two
+      	lduh  [ %i2 + %g1 ], %g3
  
       	cmp  %i0, 3
-      	be  three
-      	nop
+      	be,a  three
+      	lduh  [ %i2 + %g1 ], %g3
  
 one:    cmp  %i0, 1
-        bne  def
-	
+        bne,a  def
+	mov  %i2, %i0
+
       	lduh  [ %i2 + %g1 ], %g2
 	umul %g2, %i1, %g2
         sth  %g2, [ %g4 + %g1 ]
         b  def
-        nop 
+        mov  %i2, %i0
 
-two:    
-	lduh  [ %i2 + %g1 ], %g3
+two:   
         umul %g3, %i1, %g3
 	sth  %g3, [ %g4 + %g1 ]
 
@@ -94,10 +92,9 @@ two:
         umul %g3, %i1, %g3
 	sth  %g3, [ %g4 + %g1 ]
         b  def
-        nop 
+        mov  %i2, %i0
 
 three:
-	lduh  [ %i2 + %g1 ], %g3
         umul %g3, %i1, %g3
 	sth  %g3, [ %g4 + %g1 ]
 
@@ -109,11 +106,10 @@ three:
 	add %g1, 2, %g1
 	lduh  [ %i2 + %g1 ], %g3
         umul %g3, %i1, %g3
-	sth  %g3, [ %g4 + %g1 ]
-        nop 
+	sth  %g3, [ %g4 + %g1]
+	mov  %i2, %i0
 
 def:	
-     	mov  %i2, %i0
      	restore 
      	retl 
         nop 
