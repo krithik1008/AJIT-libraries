@@ -77,7 +77,7 @@
      		ld  [ %fp + -4 ], %g1		!i !delay slot filling 
 
      					
-     fd:	ld  [ %fp + 0x54 ], %g1 	! ld arr 
+     		ld  [ %fp + 0x54 ], %g1 	! ld arr 
      		mov  %g1, %i0		! returning the same array
      		restore 
      		retl 

@@ -4,11 +4,14 @@ unsigned int *u32axpy(int n,unsigned int alpha,unsigned int *x,int incx,unsigned
 	int i=0;
 	if (n%2!=0)
 	{
-		y[0]=(alpha*x[0])+y[0];	//not 32 bit operatoin
+		y[0]=(alpha*x[0])+y[0];	//using 32 bit operatoin
 		i=1;
 	}
 	for(;i<n;i=i+2)
+	{
 		y[i]=(alpha*x[i])+y[i];	//implemented using vector operations 
+		y[i+1]=(alpha*x[i+1])+y[i+1];
+	}
 	return y;	
 	
 	
