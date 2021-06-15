@@ -1,16 +1,18 @@
 #include <stdio.h>
 float sdot(int n,float *x,int incx,float *y,int incy);
 /*{
-	int k=0,i=0;
+	int i=0;
 	float ans=0;
-	if (n%2==0)
-		k=n;
-	else
-		k=n-1;
-	for(;i<k;i=i+2)
-		ans=ans+x[i]*y[i];
-	if(n%2!=0)
-		ans=ans+x[n-1]*y[n-1];
+	if (n%2!=0)
+	{
+		ans=ans+(x[0]*y[0]);	//using 32 bit operatoin
+		i=1;
+	}
+	for(;i<n;i=i+2)
+	{
+		ans=ans+(x[i]*y[i]);	//using vector instructions
+		ans=ans+(x[i+1]*y[i+1]);
+	}
 	return ans;
 }*/
 float main()
