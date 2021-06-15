@@ -1,6 +1,10 @@
 !author : Ayush Mittal 
 !email  : mittalayush129@gmail.com
 !date   : 14th June 2021
+!Note 	: Result is same as provided to the function
+!delay slot filling is performed wherever possible.
+!more optimized code than compiler generated.
+
 
 .section ".bss"
 .common datak, 400,4

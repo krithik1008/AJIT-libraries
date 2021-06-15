@@ -1,6 +1,6 @@
 #include <stdio.h>
-
-/*unsigned int *u32scal(int n , unsigned int alpha , unsigned int *arr, int incx)
+/*
+unsigned int *u32scal(int n , unsigned int alpha , unsigned int *arr, int incx)
 {
 	int i=0;
 	int x=n-1;	
