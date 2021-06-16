@@ -3,7 +3,9 @@
 !date   : 14th June 2021
 !Note 	: Result is pointer to the input array 
 !delay slot filling is performed wherever possible.
-!more optimized code than compiler generated.
+!remaining elements are processed with normal 
+!multiplication instruction ; can be optimized 
+!with vector instructions
 
 .section ".bss"
 .common datak, 400,4
@@ -32,19 +34,19 @@ u16scal:
         mov %l0, %l1		! 4 alphas delay slot filling
 
 body: 
-      	add  %i2, %g1, %g2	! arr + 0
-     	lduh [ %g2 ], %l2	![arr]
-	lduh [ %g2 + 2 ], %g3	![arr+1]
+      	add  %i2, %g1, %g2	! 4 load instruction 
+     	lduh [ %g2 ], %l2	! data arranged in 
+	lduh [ %g2 + 2 ], %g3	! l2 and l3
 	sll %g3, 16, %g3
 	or %g3, %l2, %l2
-	lduh [ %g2 + 4 ], %l3	![arr+2]
-	lduh [ %g2 + 6 ], %g3	![arr+3]
+	lduh [ %g2 + 4 ], %l3	
+	lduh [ %g2 + 6 ], %g3	
 	sll %g3, 16, %g3
 	or %g3, %l3, %l3
 
      	vumuld16 %l0, %l2, %l2
 	
-	sth %l2, [%g4 + %g1]
+	sth %l2, [%g4 + %g1]	! 4 store instructions
 	
 	srl %l2, 16, %l2
 	add %g1, 2, %g1
@@ -64,6 +66,7 @@ while:
  	bg  body
 	add  %l4, %l4, %g1	! base i with offser
 
+!xxxxxxx processing remaining 3 elements with switch case xxxxxxx!
 case: 
       	cmp  %i0, 2
         be,a  two
@@ -73,7 +76,7 @@ case:
       	be,a  three
       	lduh  [ %i2 + %g1 ], %g3
  
-one:    cmp  %i0, 1
+one:    cmp  %i0, 1		! one element mul
         bne,a  def
 	mov  %i2, %i0
 
@@ -83,7 +86,7 @@ one:    cmp  %i0, 1
         b  def
         mov  %i2, %i0
 
-two:   
+two:   				! two element mul
         umul %g3, %i1, %g3
 	sth  %g3, [ %g4 + %g1 ]
 
@@ -94,7 +97,7 @@ two:
         b  def
         mov  %i2, %i0
 
-three:
+three:				! three element mul
         umul %g3, %i1, %g3
 	sth  %g3, [ %g4 + %g1 ]
 

@@ -2,61 +2,55 @@
 	.section	".text"
 .Ltext0:
 	.cfi_sections	.debug_frame
-	.section	".rodata"
-	.align 4
-.LC0:
-	.long	4
-	.long	3
-	.long	2
-	.long	5
-	.long	1
-	.long	7
-	.long	8
-	.long	9
-	.section	".text"
 	.align 4
 	.global main
 	.type	main, #function
-	.proc	0116
+	.proc	0114
 main:
 .LFB0:
 	.file 1 "main.c"
-	.loc 1 23 0
+	.loc 1 34 0
 	.cfi_startproc
-	save	%sp, -144, %sp
+	save	%sp, -112, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
-	.loc 1 24 0
-	mov	8, %g1
+	.loc 1 35 0
+	mov	7, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
-	.loc 1 25 0
-	sethi	%hi(.LC0), %g1
-	or	%g1, %lo(.LC0), %g1
-	add	%fp, -44, %g3
-	mov	%g1, %g2
-	mov	32, %g1
-	mov	%g3, %o0
+	.loc 1 36 0
+	mov	2, %g1
+	stb	%g1, [%fp-16]
+	mov	9, %g1
+	stb	%g1, [%fp-15]
+	mov	5, %g1
+	stb	%g1, [%fp-14]
+	mov	7, %g1
+	stb	%g1, [%fp-13]
+	mov	6, %g1
+	stb	%g1, [%fp-12]
+	mov	8, %g1
+	stb	%g1, [%fp-11]
+	mov	1, %g1
+	stb	%g1, [%fp-10]
+	.loc 1 37 0
+	mov	5, %g1
+	stb	%g1, [%fp-9]
+	.loc 1 38 0
+	ldub	[%fp-9], %g1
+	and	%g1, 0xff, %g2
+	add	%fp, -16, %g1
+	ld	[%fp-4], %o0
 	mov	%g2, %o1
 	mov	%g1, %o2
-	call	memcpy, 0
-	 nop
-	.loc 1 26 0
-	mov	100, %g1
-	st	%g1, [%fp-12]
-	.loc 1 27 0
-	add	%fp, -44, %g1
-	ld	[%fp-4], %o0
-	ld	[%fp-12], %o1
-	mov	%g1, %o2
 	ld	[%fp-8], %o3
-	call	u32scal, 0
+	call	u8scal, 0
 	 nop
 	mov	%o0, %g1
-	.loc 1 28 0
+	.loc 1 39 0
 	mov	%g1, %i0
 	restore
 	jmp	%o7+8
@@ -131,7 +125,7 @@ main:
 	.byte	0x1
 	.uaword	.LASF16
 	.byte	0x1
-	.byte	0x16
+	.byte	0x21
 	.uaword	0xcd
 	.uaword	.LFB0
 	.uaword	.LFE0
@@ -141,7 +135,7 @@ main:
 	.uleb128 0x5
 	.asciz	"n"
 	.byte	0x1
-	.byte	0x18
+	.byte	0x23
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -149,7 +143,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF11
 	.byte	0x1
-	.byte	0x18
+	.byte	0x23
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -157,28 +151,28 @@ main:
 	.uleb128 0x5
 	.asciz	"arr"
 	.byte	0x1
-	.byte	0x19
+	.byte	0x24
 	.uaword	0xd3
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -44
+	.sleb128 -16
 	.uleb128 0x6
 	.uaword	.LASF12
 	.byte	0x1
-	.byte	0x1a
-	.uaword	0x25
+	.byte	0x25
+	.uaword	0x2c
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -12
+	.sleb128 -9
 	.byte	0
 	.uleb128 0x7
 	.byte	0x4
-	.uaword	0x25
+	.uaword	0x2c
 	.uleb128 0x8
-	.uaword	0x25
+	.uaword	0x2c
 	.uleb128 0x9
 	.uaword	0x6b
-	.byte	0x7
+	.byte	0x6
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
@@ -337,10 +331,10 @@ main:
 	.section	.debug_str,"MS",@progbits,1
 .LASF6:
 	.asciz	"long long int"
-.LASF2:
-	.asciz	"short unsigned int"
 .LASF0:
 	.asciz	"unsigned int"
+.LASF1:
+	.asciz	"unsigned char"
 .LASF14:
 	.asciz	"main.c"
 .LASF13:
@@ -351,8 +345,8 @@ main:
 	.asciz	"long long unsigned int"
 .LASF10:
 	.asciz	"char"
-.LASF1:
-	.asciz	"unsigned char"
+.LASF15:
+	.asciz	"/home/ayush/eys/ajit-toolchain/wkspace/AJIT-libraries/xscal/u8scal "
 .LASF16:
 	.asciz	"main"
 .LASF8:
@@ -361,8 +355,8 @@ main:
 	.asciz	"alpha"
 .LASF11:
 	.asciz	"incx"
-.LASF15:
-	.asciz	"/home/ayush/eys/ajit-toolchain/wkspace/AJIT-libraries/xscal/u32scal "
+.LASF2:
+	.asciz	"short unsigned int"
 .LASF4:
 	.asciz	"signed char"
 .LASF5:

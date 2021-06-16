@@ -1,5 +1,7 @@
 #include <stdio.h>
+
 /*
+
 unsigned short int *u16scal(int n, unsigned short int alpha ,unsigned short int *arr, int incx)
 {	int i=0;
 	
@@ -24,7 +26,9 @@ switch(n)
 	return arr ;
 
 }
+
 */
+
 unsigned short int *u16scal(int n , unsigned short int alpha , unsigned short int *arr, int incx);
 unsigned short int *main()
 {

@@ -9,19 +9,19 @@
 main:
 .LFB0:
 	.file 1 "main.c"
-	.loc 1 30 0
+	.loc 1 34 0
 	.cfi_startproc
 	save	%sp, -120, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
-	.loc 1 31 0
+	.loc 1 35 0
 	mov	4, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
-	.loc 1 32 0
+	.loc 1 36 0
 	mov	2, %g1
 	sth	%g1, [%fp-18]
 	mov	1, %g1
@@ -30,10 +30,10 @@ main:
 	sth	%g1, [%fp-14]
 	mov	100, %g1
 	sth	%g1, [%fp-12]
-	.loc 1 33 0
+	.loc 1 37 0
 	mov	100, %g1
 	sth	%g1, [%fp-10]
-	.loc 1 34 0
+	.loc 1 38 0
 	lduh	[%fp-10], %g1
 	sll	%g1, 16, %g1
 	srl	%g1, 16, %g2
@@ -45,7 +45,7 @@ main:
 	call	u16scal, 0
 	 nop
 	mov	%o0, %g1
-	.loc 1 35 0
+	.loc 1 39 0
 	mov	%g1, %i0
 	restore
 	jmp	%o7+8
@@ -120,7 +120,7 @@ main:
 	.byte	0x1
 	.uaword	.LASF16
 	.byte	0x1
-	.byte	0x1d
+	.byte	0x21
 	.uaword	0xcd
 	.uaword	.LFB0
 	.uaword	.LFE0
@@ -130,7 +130,7 @@ main:
 	.uleb128 0x5
 	.asciz	"n"
 	.byte	0x1
-	.byte	0x1f
+	.byte	0x23
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -138,7 +138,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF11
 	.byte	0x1
-	.byte	0x1f
+	.byte	0x23
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -146,7 +146,7 @@ main:
 	.uleb128 0x5
 	.asciz	"arr"
 	.byte	0x1
-	.byte	0x20
+	.byte	0x24
 	.uaword	0xd3
 	.byte	0x2
 	.byte	0x91
@@ -154,7 +154,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF12
 	.byte	0x1
-	.byte	0x21
+	.byte	0x25
 	.uaword	0x33
 	.byte	0x2
 	.byte	0x91
