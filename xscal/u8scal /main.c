@@ -29,11 +29,16 @@ switch(n)
 
 }
 */
+
 unsigned char *u8scal(int n , unsigned char alpha , unsigned char *arr, int incx);
 unsigned char *main()
 {
-	int n=7,incx=1;	
-	unsigned char arr[7]={2,9,5,7,6,8,1};
+	int n=23,incx=1;	
+	int i=0;
+	unsigned char arr[23];
+	for (;i<n;i++)
+	arr[i]=i+5;
+	
 	unsigned char alpha=5;
 	return u8scal(n,alpha,&arr[0],incx);
 }

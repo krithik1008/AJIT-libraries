@@ -56,9 +56,7 @@ cc:   add  %i1, %g1, %g1	! arr+offset
       ld  [ %g1 ], %f10		! arr[offset1] x---- arr[2]
       fabss %f10, %f10
 
-      
-      add %g1, 4, %g1
-      ld  [ %g1 ], %f11		! arr[offset1+4] x---- arr[4]
+      ld  [ %g1+4 ], %f11		! arr[offset1+4] x---- arr[4]
       fabss %f11, %f11
 
       vfadd32  %f8, %f10, %f8
