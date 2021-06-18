@@ -2,81 +2,59 @@
 	.section	".text"
 .Ltext0:
 	.cfi_sections	.debug_frame
-	.section	".rodata"
-	.align 4
-.LC0:
-	.long	1082130432
-	.align 4
-.LC1:
-	.long	1077936128
-	.align 4
-.LC2:
-	.long	1073741824
-	.align 4
-.LC3:
-	.long	1084227584
-	.align 4
-.LC4:
-	.long	1065353216
-	.align 4
-.LC5:
-	.long	1066192077
-	.section	".text"
 	.align 4
 	.global main
 	.type	main, #function
-	.proc	0106
+	.proc	03
 main:
 .LFB0:
 	.file 1 "main.c"
-	.loc 1 5 0
+	.loc 1 56 0
 	.cfi_startproc
-	save	%sp, -128, %sp
+	save	%sp, -112, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
-	.loc 1 6 0
-	mov	5, %g1
-	st	%g1, [%fp-4]
+	.loc 1 57 0
 	mov	1, %g1
 	st	%g1, [%fp-8]
-	.loc 1 7 0
-	sethi	%hi(.LC0), %g1
-	or	%g1, %lo(.LC0), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-32]
-	sethi	%hi(.LC1), %g1
-	or	%g1, %lo(.LC1), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-28]
-	sethi	%hi(.LC2), %g1
-	or	%g1, %lo(.LC2), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-24]
-	sethi	%hi(.LC3), %g1
-	or	%g1, %lo(.LC3), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-20]
-	sethi	%hi(.LC4), %g1
-	or	%g1, %lo(.LC4), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-16]
-	.loc 1 8 0
-	sethi	%hi(.LC5), %g1
-	or	%g1, %lo(.LC5), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-12]
-	.loc 1 9 0
-	add	%fp, -32, %g1
-	ld	[%fp-4], %o0
-	ld	[%fp-12], %o1
-	mov	%g1, %o2
-	ld	[%fp-8], %o3
-	call	sscal, 0
+	mov	1, %g1
+	st	%g1, [%fp-12]
+	.loc 1 58 0
+	st	%g0, [%fp-4]
+	.loc 1 68 0
+	b	.L2
+	 nop
+.L3:
+	.loc 1 69 0 discriminator 2
+	ld	[%fp-4], %g1
+	add	%g1, %g1, %g1
+	add	%fp, %g1, %g1
+	mov	-100, %g2
+	sth	%g2, [%g1-14]
+	.loc 1 68 0 discriminator 2
+	ld	[%fp-4], %g1
+	add	%g1, 1, %g1
+	st	%g1, [%fp-4]
+.L2:
+	.loc 1 68 0 is_stmt 0 discriminator 1
+	ld	[%fp-4], %g2
+	ld	[%fp-8], %g1
+	cmp	%g2, %g1
+	bl	.L3
+	 nop
+	.loc 1 70 0 is_stmt 1
+	add	%fp, -14, %g1
+	ld	[%fp-8], %o0
+	mov	%g1, %o1
+	ld	[%fp-12], %o2
+	call	u16asum, 0
 	 nop
 	mov	%o0, %g1
-	.loc 1 10 0
+	sll	%g1, 16, %g1
+	sra	%g1, 16, %g1
+	.loc 1 71 0
 	mov	%g1, %i0
 	restore
 	jmp	%o7+8
@@ -87,7 +65,7 @@ main:
 .Letext0:
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.uaword	0xe3
+	.uaword	0xe2
 	.uahalf	0x2
 	.uaword	.Ldebug_abbrev0
 	.byte	0x4
@@ -147,62 +125,63 @@ main:
 	.byte	0x1
 	.byte	0x6
 	.uaword	.LASF10
+	.uleb128 0x2
+	.byte	0x4
+	.byte	0x4
+	.uaword	.LASF11
+	.uleb128 0x2
+	.byte	0x8
+	.byte	0x4
+	.uaword	.LASF12
 	.uleb128 0x4
 	.byte	0x1
 	.uaword	.LASF17
 	.byte	0x1
-	.byte	0x4
-	.uaword	0xcd
+	.byte	0x37
+	.uaword	0x48
 	.uaword	.LFB0
 	.uaword	.LFE0
 	.uaword	.LLST0
 	.byte	0x1
-	.uaword	0xcd
+	.uaword	0xd9
 	.uleb128 0x5
 	.asciz	"n"
 	.byte	0x1
-	.byte	0x6
-	.uaword	0x4f
-	.byte	0x2
-	.byte	0x91
-	.sleb128 -4
-	.uleb128 0x6
-	.uaword	.LASF11
-	.byte	0x1
-	.byte	0x6
+	.byte	0x39
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
 	.sleb128 -8
-	.uleb128 0x5
-	.asciz	"arr"
-	.byte	0x1
-	.byte	0x7
-	.uaword	0xda
-	.byte	0x2
-	.byte	0x91
-	.sleb128 -32
 	.uleb128 0x6
-	.uaword	.LASF12
+	.uaword	.LASF13
 	.byte	0x1
-	.byte	0x8
-	.uaword	0xd3
+	.byte	0x39
+	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
 	.sleb128 -12
+	.uleb128 0x5
+	.asciz	"i"
+	.byte	0x1
+	.byte	0x3a
+	.uaword	0x4f
+	.byte	0x2
+	.byte	0x91
+	.sleb128 -4
+	.uleb128 0x5
+	.asciz	"arr"
+	.byte	0x1
+	.byte	0x3b
+	.uaword	0xd9
+	.byte	0x2
+	.byte	0x91
+	.sleb128 -14
 	.byte	0
 	.uleb128 0x7
-	.byte	0x4
-	.uaword	0xd3
-	.uleb128 0x2
-	.byte	0x4
-	.byte	0x4
-	.uaword	.LASF13
+	.uaword	0x48
 	.uleb128 0x8
-	.uaword	0xd3
-	.uleb128 0x9
 	.uaword	0x6b
-	.byte	0x4
+	.byte	0
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
@@ -304,22 +283,13 @@ main:
 	.byte	0
 	.byte	0
 	.uleb128 0x7
-	.uleb128 0xf
-	.byte	0
-	.uleb128 0xb
-	.uleb128 0xb
-	.uleb128 0x49
-	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x8
 	.uleb128 0x1
 	.byte	0x1
 	.uleb128 0x49
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x9
+	.uleb128 0x8
 	.uleb128 0x21
 	.byte	0
 	.uleb128 0x49
@@ -365,8 +335,6 @@ main:
 	.asciz	"unsigned int"
 .LASF15:
 	.asciz	"main.c"
-.LASF16:
-	.asciz	"/home/ayush/eys/ajit-toolchain/wkspace/AJIT-libraries/xscal/sscal"
 .LASF14:
 	.asciz	"GNU C 4.7.4"
 .LASF3:
@@ -381,15 +349,17 @@ main:
 	.asciz	"main"
 .LASF8:
 	.asciz	"long int"
-.LASF12:
-	.asciz	"alpha"
-.LASF11:
+.LASF13:
 	.asciz	"incx"
+.LASF12:
+	.asciz	"double"
+.LASF16:
+	.asciz	"/home/ayush/eys/ajit-toolchain/wkspace/AJIT-libraries/xasum/u16asum"
 .LASF2:
 	.asciz	"short unsigned int"
 .LASF4:
 	.asciz	"signed char"
-.LASF13:
+.LASF11:
 	.asciz	"float"
 .LASF5:
 	.asciz	"short int"
