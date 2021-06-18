@@ -2,7 +2,8 @@
 !email  : krithik.sankar10@gmail.com
 !date   : 14th June 2021
 
-!result (unsigned int) is stored in %g1 reg and in memory 
+!result (unsigned int) is stored in %i0 reg and in memory 
+!delay slot filling done wherever possible 
 
 .section ".bss"
 .common datak,400,4
@@ -12,87 +13,64 @@
 .global u32dot
 .type u32dot, #function
 
-u32dot: save  %sp, -112, %sp
+u32dot: save  %sp, -104, %sp
      	st  %i0, [ %fp + 0x44 ]	!value of n
       	st  %i1, [ %fp + 0x48 ]	!array x
       	st  %i2, [ %fp + 0x4c ]	!int incx
       	st  %i3, [ %fp + 0x50 ]	!array y
       	st  %i4, [ %fp + 0x54 ] !int incy
 
-      	clr  [ %fp + -4 ]	!k=0
-	clr  [ %fp + -8 ]	!i=0
-	clr  [ %fp + -12]	!temp result will be stored here
+      	clr  [ %fp + -4 ]	!i=0
+	clr  [ %fp + -8 ]	!result will be stored here
+	
 	ld  [ %fp + 0x44 ], %g1
      	and  %g1, 1, %g1
      	cmp  %g1, 0
-	bne  condt
-	nop
+	be  check
+	ld  [ %fp + -4 ], %g1		!i for loop !delay slot filling
 
-	ld  [ %fp + 0x44 ], %g1	!if n is even : k=n
-     	st  %g1, [ %fp + -4 ]
-	b  check
-	nop
+	!if n is odd one operation must be done in 32bit rest done in 64bits
+	ld  [ %fp + 0x48 ], %g1	!loading x[0]
+	ld  [ %g1 ], %g1
+	ld  [ %fp + 0x50 ], %g2	!loading y[0]
+	ld  [ %g2 ], %g2
+	umul  %g1, %g2, %g1	!x[0]*y[0]
+	st  %g1, [ %fp + -8 ]	!storing in temp result
+	mov  1, %g1
+	st  %g1, [ %fp + -4 ]
+	b check
+	ld  [ %fp + -4 ], %g1		!i for loop !delay slot filling
 
-condt:	ld  [ %fp + 0x44 ], %g1	!if n is odd : k=n-1
-     	add  %g1, -1, %g1
-     	st %g1, [ %fp + -4 ]
-	b  check
-	nop
-
-loop: 	ld  [ %fp + -8 ], %g1	!loading i into g1
-      	sll  %g1, 2, %g1	!i*4
+loop: 	sll  %g1, 2, %g1	!i*4
       	ld  [ %fp + 0x48 ], %g2	!loadding array &x[0]
       	add  %g2, %g1, %g2	!x+(i*4)
-      	ld  [%g2], %g4		!load uint first value of array x into g4
-	ld  [%g2+4], %g5	!load uint next value of array x into g5
+      	ld  [%g2], %l4		!load first value of array x into l4
+	ld  [%g2+4], %l5	!load next value of array x into l5
 
       	ld  [ %fp + 0x50 ], %g3	!loadding array &y[0]
       	add  %g3, %g1, %g3	!y+(i*4)
-      	ld  [%g3], %g6		!load uint first value of array y into g6
-	ld  [%g3+4], %g7	!load uint next value of array y into g7
+      	ld  [%g3], %l6		!load first value of array y into l6
+	ld  [%g3+4], %l7	!load next value of array y into l7
 
-      	vumuld32  %g4, %g6, %g2	!multiplying x[i]*y[i]
-	add %g2, %g3, %g2
-      	ld  [ %fp + -12 ], %g3
-      	add  %g2, %g3, %g2	!summing
-	st  %g2, [ %fp + -12 ]
-      	ld  [ %fp + -8 ], %g1	!loading value of i
+      	vumuld32  %l4, %l6, %l2	!multiplying x[i]*y[i]
+	add %l2, %l3, %l2
+      	ld  [ %fp + -8 ], %g2
+      	add  %g2, %l2, %g2	!summing
+	st  %g2, [ %fp + -8 ]
+      	ld  [ %fp + -4 ], %g1	!loading value of i
       	add  %g1,2,%g1		!i=i+2
-      	st  %g1, [ %fp + -8 ]
+      	st  %g1, [ %fp + -4 ]
+	
+check:	ld  [ %fp + 0x44 ], %g2		!loading n
+     	cmp  %g1, %g2			!if i< n
+   	bl  loop 			!go to body of for
+	ld  [ %fp + -4 ], %g1		!loading i into g1 !delay slot filling
 
-
-check:	ld  [ %fp + -8 ], %g2	!loading value of i
-      	ld  [ %fp + -4 ], %g1	!loading value if k
-      	cmp  %g2, %g1		!if(i<k)
-      	bl  loop
-      	nop 
-
-	ld  [ %fp + 0x44 ], %g1
-     	and  %g1, 1, %g1
-     	cmp  %g1, 0
-     	be  store		!if n is even no need to compute for last element
-	nop
-
-	ld  [ %fp + 0x44 ], %g1	!loading value of n
-     	add  %g1, -1, %g1	!n-1
-     	sll  %g1, 2, %g1	!(n-1)*4
-	ld  [ %fp + 0x48 ], %g2
-	add  %g2, %g1, %g2
-	ld  [ %g2 ], %g2	!loading x[n-1]
-
-	ld  [ %fp + 0x50 ], %g3
-	add  %g3, %g1, %g3
-	ld  [%g3], %g3		!loading y[n-1]
-
-	umul  %g2, %g3, %g2
-	ld  [ %fp + -12 ], %g3
-	add  %g2, %g3, %g2
-	st  %g2, [ %fp + -12 ]
-
-store:	ld  [ %fp + -12 ], %g2
+	ld  [ %fp + -8 ], %g2
 	set  datak, %g4		!results stored in mem
-	st %g2, [%g4]		!storing g2 (result) to memory
-	mov  %g2, %g1
+	st %g2, [%g4]		!storing f9 (result) to memory
+	!st %g1, [%g4+4]
+	mov  %g2, %i0
 	
 	restore
 	retl

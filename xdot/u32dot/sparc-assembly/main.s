@@ -9,49 +9,45 @@
 main:
 .LFB0:
 	.file 1 "main.c"
-	.loc 1 17 0
+	.loc 1 19 0
 	.cfi_startproc
-	save	%sp, -160, %sp
+	save	%sp, -152, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
-	.loc 1 18 0
-	mov	6, %g1
+	.loc 1 20 0
+	mov	5, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
 	mov	1, %g1
 	st	%g1, [%fp-12]
-	.loc 1 19 0
+	.loc 1 21 0
 	mov	5, %g1
-	st	%g1, [%fp-36]
-	mov	3, %g1
 	st	%g1, [%fp-32]
-	mov	2, %g1
+	mov	3, %g1
 	st	%g1, [%fp-28]
-	mov	5, %g1
+	mov	2, %g1
 	st	%g1, [%fp-24]
-	mov	1, %g1
+	mov	5, %g1
 	st	%g1, [%fp-20]
 	mov	10, %g1
 	st	%g1, [%fp-16]
-	.loc 1 20 0
+	.loc 1 22 0
 	mov	2, %g1
-	st	%g1, [%fp-60]
-	mov	2, %g1
-	st	%g1, [%fp-56]
-	mov	3, %g1
 	st	%g1, [%fp-52]
-	mov	4, %g1
-	st	%g1, [%fp-48]
 	mov	2, %g1
-	st	%g1, [%fp-44]
+	st	%g1, [%fp-48]
 	mov	3, %g1
+	st	%g1, [%fp-44]
+	mov	4, %g1
 	st	%g1, [%fp-40]
-	.loc 1 21 0
-	add	%fp, -36, %g2
-	add	%fp, -60, %g1
+	mov	3, %g1
+	st	%g1, [%fp-36]
+	.loc 1 23 0
+	add	%fp, -32, %g2
+	add	%fp, -52, %g1
 	ld	[%fp-4], %o0
 	mov	%g2, %o1
 	ld	[%fp-8], %o2
@@ -60,7 +56,7 @@ main:
 	call	u32dot, 0
 	 nop
 	mov	%o0, %g1
-	.loc 1 22 0
+	.loc 1 24 0
 	mov	%g1, %i0
 	restore
 	jmp	%o7+8
@@ -135,7 +131,7 @@ main:
 	.byte	0x1
 	.uaword	.LASF16
 	.byte	0x1
-	.byte	0x10
+	.byte	0x12
 	.uaword	0x25
 	.uaword	.LFB0
 	.uaword	.LFE0
@@ -145,7 +141,7 @@ main:
 	.uleb128 0x5
 	.asciz	"n"
 	.byte	0x1
-	.byte	0x12
+	.byte	0x14
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -153,7 +149,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF11
 	.byte	0x1
-	.byte	0x12
+	.byte	0x14
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -161,7 +157,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF12
 	.byte	0x1
-	.byte	0x12
+	.byte	0x14
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -169,25 +165,25 @@ main:
 	.uleb128 0x5
 	.asciz	"x"
 	.byte	0x1
-	.byte	0x13
+	.byte	0x15
 	.uaword	0xd7
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -36
+	.sleb128 -32
 	.uleb128 0x5
 	.asciz	"y"
 	.byte	0x1
-	.byte	0x14
+	.byte	0x16
 	.uaword	0xd7
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -60
+	.sleb128 -52
 	.byte	0
 	.uleb128 0x7
 	.uaword	0x25
 	.uleb128 0x8
 	.uaword	0x6b
-	.byte	0x5
+	.byte	0x4
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits

@@ -27,14 +27,13 @@
       		ld  [ %fp + 0x44 ], %g1		!loading vlue of n
       		and  %g1, 1, %g1
       		cmp  %g1, 0			
-      		bn check 			!if n is even then branch
+      		be check 			!if n is even then branch
       		ld  [ %fp + -4 ], %g2		!i for loop !delay slot filling 
 		
 		!if n is odd one operation must be done in 32bit rest done in 64bits
       		ld  [ %fp + 0x4c ], %g1		!loading x[0]
 		ld  [ %g1 ], %g1		
-		ld  [ %fp + 0x48 ], %g2		!loading alpha
-		umul %g2, %g1, %g2		!x*alpha
+		umul %g2, %l4, %g2		!x*alpha
 		ld  [ %fp + 0x54 ], %g1		!loading y[0]
 		ld  [ %g1 ], %g1		
 		add  %g2, %g1, %g2		!x*alpha+y
@@ -49,14 +48,14 @@
       loop:	sll  %g1, 2, %g1		!i*4
       		ld  [ %fp + 0x4c ], %g3		!arr &x[0]
       		add  %g3, %g1, %g3		!x=x+(i*4) o
-      		ld  [ %g3 ], %l0		!load[x+i*4] pair in l1 l2
+      		ld  [ %g3 ], %l0		!load[x+i*4] pair in l0 l1
 		ld  [ %g3 +4 ], %l1		
 		vumuld32 %l0, %l4, %l6		!multiply (x*alpha)
 
 
 		ld  [%fp+0x54],%g2		!arr &y[0]
       		add  %g2, %g1, %g2		!y=y+(i*4) d
-		ld  [ %g2 ], %l2		!load[y+i*4] pair in l3 l4
+		ld  [ %g2 ], %l2		!load[y+i*4] pair in l2 l3
 		ld  [ %g2 +4 ], %l3
 		vaddd32 %l2, %l6, %l0		!add (x*alpha)+y
 

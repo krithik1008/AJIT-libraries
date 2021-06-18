@@ -9,44 +9,48 @@
 main:
 .LFB0:
 	.file 1 "main.c"
-	.loc 1 17 0
+	.loc 1 20 0
 	.cfi_startproc
-	save	%sp, -144, %sp
+	save	%sp, -152, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
-	.loc 1 18 0
-	mov	4, %g1
+	.loc 1 21 0
+	mov	5, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
 	mov	1, %g1
 	st	%g1, [%fp-12]
-	.loc 1 19 0
+	.loc 1 22 0
 	mov	4, %g1
+	st	%g1, [%fp-36]
+	mov	2, %g1
 	st	%g1, [%fp-32]
-	mov	2, %g1
-	st	%g1, [%fp-28]
 	mov	3, %g1
-	st	%g1, [%fp-24]
+	st	%g1, [%fp-28]
 	mov	4, %g1
+	st	%g1, [%fp-24]
+	mov	1, %g1
 	st	%g1, [%fp-20]
-	.loc 1 20 0
+	.loc 1 23 0
 	mov	2, %g1
+	st	%g1, [%fp-56]
+	mov	4, %g1
+	st	%g1, [%fp-52]
+	mov	3, %g1
 	st	%g1, [%fp-48]
 	mov	4, %g1
 	st	%g1, [%fp-44]
-	mov	3, %g1
+	mov	2, %g1
 	st	%g1, [%fp-40]
-	mov	4, %g1
-	st	%g1, [%fp-36]
-	.loc 1 21 0
+	.loc 1 24 0
 	mov	3, %g1
 	st	%g1, [%fp-16]
-	.loc 1 22 0
-	add	%fp, -32, %g2
-	add	%fp, -48, %g1
+	.loc 1 25 0
+	add	%fp, -36, %g2
+	add	%fp, -56, %g1
 	ld	[%fp-4], %o0
 	ld	[%fp-16], %o1
 	mov	%g2, %o2
@@ -56,7 +60,7 @@ main:
 	call	u32axpy, 0
 	 nop
 	mov	%o0, %g1
-	.loc 1 23 0
+	.loc 1 26 0
 	mov	%g1, %i0
 	restore
 	jmp	%o7+8
@@ -131,7 +135,7 @@ main:
 	.byte	0x1
 	.uaword	.LASF17
 	.byte	0x1
-	.byte	0x10
+	.byte	0x13
 	.uaword	0xe5
 	.uaword	.LFB0
 	.uaword	.LFE0
@@ -141,7 +145,7 @@ main:
 	.uleb128 0x5
 	.asciz	"n"
 	.byte	0x1
-	.byte	0x12
+	.byte	0x15
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -149,7 +153,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF11
 	.byte	0x1
-	.byte	0x12
+	.byte	0x15
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -157,7 +161,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF12
 	.byte	0x1
-	.byte	0x12
+	.byte	0x15
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -165,23 +169,23 @@ main:
 	.uleb128 0x5
 	.asciz	"x"
 	.byte	0x1
-	.byte	0x13
+	.byte	0x16
 	.uaword	0xeb
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -32
+	.sleb128 -36
 	.uleb128 0x5
 	.asciz	"y"
 	.byte	0x1
-	.byte	0x14
+	.byte	0x17
 	.uaword	0xeb
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -48
+	.sleb128 -56
 	.uleb128 0x6
 	.uaword	.LASF13
 	.byte	0x1
-	.byte	0x15
+	.byte	0x18
 	.uaword	0x25
 	.byte	0x2
 	.byte	0x91
@@ -194,7 +198,7 @@ main:
 	.uaword	0x25
 	.uleb128 0x9
 	.uaword	0x6b
-	.byte	0x3
+	.byte	0x4
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits

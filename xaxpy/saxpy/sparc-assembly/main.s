@@ -29,62 +29,112 @@
 main:
 .LFB0:
 	.file 1 "main.c"
-	.loc 1 4 0
+	.loc 1 18 0
 	.cfi_startproc
-	save	%sp, -144, %sp
+	save	%sp, -176, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
-	.loc 1 5 0
-	mov	4, %g1
+	.loc 1 19 0
+	mov	8, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
 	mov	1, %g1
 	st	%g1, [%fp-12]
-	.loc 1 6 0
+	.loc 1 20 0
+	st	%g0, [%fp-48]
+	st	%g0, [%fp-44]
+	st	%g0, [%fp-40]
+	st	%g0, [%fp-36]
+	st	%g0, [%fp-32]
+	st	%g0, [%fp-28]
+	st	%g0, [%fp-24]
+	st	%g0, [%fp-20]
 	sethi	%hi(.LC0), %g1
 	or	%g1, %lo(.LC0), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-32]
+	st	%f8, [%fp-48]
 	sethi	%hi(.LC1), %g1
 	or	%g1, %lo(.LC1), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-28]
+	st	%f8, [%fp-44]
 	sethi	%hi(.LC2), %g1
 	or	%g1, %lo(.LC2), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-24]
+	st	%f8, [%fp-40]
 	sethi	%hi(.LC3), %g1
 	or	%g1, %lo(.LC3), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-20]
-	.loc 1 7 0
+	st	%f8, [%fp-36]
 	sethi	%hi(.LC4), %g1
 	or	%g1, %lo(.LC4), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-48]
+	st	%f8, [%fp-32]
+	sethi	%hi(.LC4), %g1
+	or	%g1, %lo(.LC4), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-28]
+	sethi	%hi(.LC4), %g1
+	or	%g1, %lo(.LC4), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-24]
+	.loc 1 21 0
+	st	%g0, [%fp-80]
+	st	%g0, [%fp-76]
+	st	%g0, [%fp-72]
+	st	%g0, [%fp-68]
+	st	%g0, [%fp-64]
+	st	%g0, [%fp-60]
+	st	%g0, [%fp-56]
+	st	%g0, [%fp-52]
+	sethi	%hi(.LC4), %g1
+	or	%g1, %lo(.LC4), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-80]
 	sethi	%hi(.LC2), %g1
 	or	%g1, %lo(.LC2), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-44]
+	st	%f8, [%fp-76]
 	sethi	%hi(.LC1), %g1
 	or	%g1, %lo(.LC1), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-40]
+	st	%f8, [%fp-72]
 	sethi	%hi(.LC0), %g1
 	or	%g1, %lo(.LC0), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-36]
-	.loc 1 8 0
+	st	%f8, [%fp-68]
+	sethi	%hi(.LC4), %g1
+	or	%g1, %lo(.LC4), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-64]
+	sethi	%hi(.LC4), %g1
+	or	%g1, %lo(.LC4), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-60]
+	sethi	%hi(.LC4), %g1
+	or	%g1, %lo(.LC4), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-56]
+	.loc 1 22 0
+	sethi	%hi(.LC1), %g1
+	or	%g1, %lo(.LC1), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-20]
+	.loc 1 23 0
+	sethi	%hi(.LC4), %g1
+	or	%g1, %lo(.LC4), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-52]
+	.loc 1 24 0
 	sethi	%hi(.LC5), %g1
 	or	%g1, %lo(.LC5), %g1
 	ld	[%g1], %f8
 	st	%f8, [%fp-16]
-	.loc 1 9 0
-	add	%fp, -32, %g2
-	add	%fp, -48, %g1
+	.loc 1 25 0
+	add	%fp, -48, %g2
+	add	%fp, -80, %g1
 	ld	[%fp-4], %o0
 	ld	[%fp-16], %o1
 	mov	%g2, %o2
@@ -94,7 +144,7 @@ main:
 	call	saxpy, 0
 	 nop
 	mov	%o0, %g1
-	.loc 1 10 0
+	.loc 1 26 0
 	mov	%g1, %i0
 	restore
 	jmp	%o7+8
@@ -105,7 +155,7 @@ main:
 .Letext0:
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.uaword	0xfb
+	.uaword	0xfc
 	.uahalf	0x2
 	.uaword	.Ldebug_abbrev0
 	.byte	0x4
@@ -169,17 +219,17 @@ main:
 	.byte	0x1
 	.uaword	.LASF18
 	.byte	0x1
-	.byte	0x3
-	.uaword	0xe5
+	.byte	0x11
+	.uaword	0xe6
 	.uaword	.LFB0
 	.uaword	.LFE0
 	.uaword	.LLST0
 	.byte	0x1
-	.uaword	0xe5
+	.uaword	0xe6
 	.uleb128 0x5
 	.asciz	"n"
 	.byte	0x1
-	.byte	0x5
+	.byte	0x13
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -187,7 +237,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF11
 	.byte	0x1
-	.byte	0x5
+	.byte	0x13
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -195,7 +245,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF12
 	.byte	0x1
-	.byte	0x5
+	.byte	0x13
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -203,40 +253,40 @@ main:
 	.uleb128 0x5
 	.asciz	"x"
 	.byte	0x1
-	.byte	0x6
-	.uaword	0xf2
-	.byte	0x2
-	.byte	0x91
-	.sleb128 -32
-	.uleb128 0x5
-	.asciz	"y"
-	.byte	0x1
-	.byte	0x7
-	.uaword	0xf2
+	.byte	0x14
+	.uaword	0xf3
 	.byte	0x2
 	.byte	0x91
 	.sleb128 -48
+	.uleb128 0x5
+	.asciz	"y"
+	.byte	0x1
+	.byte	0x15
+	.uaword	0xf3
+	.byte	0x3
+	.byte	0x91
+	.sleb128 -80
 	.uleb128 0x6
 	.uaword	.LASF13
 	.byte	0x1
-	.byte	0x8
-	.uaword	0xeb
+	.byte	0x18
+	.uaword	0xec
 	.byte	0x2
 	.byte	0x91
 	.sleb128 -16
 	.byte	0
 	.uleb128 0x7
 	.byte	0x4
-	.uaword	0xeb
+	.uaword	0xec
 	.uleb128 0x2
 	.byte	0x4
 	.byte	0x4
 	.uaword	.LASF14
 	.uleb128 0x8
-	.uaword	0xeb
+	.uaword	0xec
 	.uleb128 0x9
 	.uaword	0x6b
-	.byte	0x3
+	.byte	0x7
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
@@ -395,10 +445,8 @@ main:
 	.section	.debug_str,"MS",@progbits,1
 .LASF6:
 	.asciz	"long long int"
-.LASF0:
-	.asciz	"unsigned int"
 .LASF17:
-	.asciz	"/home/krithik/Desktop/marshal/ajit-toolchain/workspace/saxpy"
+	.asciz	"/home/krithik/Desktop/marshal/ajit-toolchain/workspace/xaxpy/saxpy"
 .LASF15:
 	.asciz	"GNU C 4.7.4"
 .LASF3:
@@ -429,6 +477,8 @@ main:
 	.asciz	"float"
 .LASF5:
 	.asciz	"short int"
+.LASF0:
+	.asciz	"unsigned int"
 .LASF9:
 	.asciz	"sizetype"
 	.ident	"GCC: (Buildroot 2014.08-g03a6b53-dirty) 4.7.4"
