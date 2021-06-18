@@ -2,18 +2,6 @@
 	.section	".text"
 .Ltext0:
 	.cfi_sections	.debug_frame
-	.section	".rodata"
-	.align 4
-.LC0:
-	.long	4
-	.long	3
-	.long	2
-	.long	5
-	.long	1
-	.long	7
-	.long	8
-	.long	9
-	.section	".text"
 	.align 4
 	.global main
 	.type	main, #function
@@ -23,32 +11,36 @@ main:
 	.file 1 "main.c"
 	.loc 1 23 0
 	.cfi_startproc
-	save	%sp, -144, %sp
+	save	%sp, -136, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
 	.loc 1 24 0
-	mov	8, %g1
+	mov	7, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
 	.loc 1 25 0
-	sethi	%hi(.LC0), %g1
-	or	%g1, %lo(.LC0), %g1
-	add	%fp, -44, %g3
-	mov	%g1, %g2
-	mov	32, %g1
-	mov	%g3, %o0
-	mov	%g2, %o1
-	mov	%g1, %o2
-	call	memcpy, 0
-	 nop
+	mov	4, %g1
+	st	%g1, [%fp-40]
+	mov	3, %g1
+	st	%g1, [%fp-36]
+	mov	2, %g1
+	st	%g1, [%fp-32]
+	mov	5, %g1
+	st	%g1, [%fp-28]
+	mov	1, %g1
+	st	%g1, [%fp-24]
+	mov	7, %g1
+	st	%g1, [%fp-20]
+	mov	8, %g1
+	st	%g1, [%fp-16]
 	.loc 1 26 0
 	mov	100, %g1
 	st	%g1, [%fp-12]
 	.loc 1 27 0
-	add	%fp, -44, %g1
+	add	%fp, -40, %g1
 	ld	[%fp-4], %o0
 	ld	[%fp-12], %o1
 	mov	%g1, %o2
@@ -161,7 +153,7 @@ main:
 	.uaword	0xd3
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -44
+	.sleb128 -40
 	.uleb128 0x6
 	.uaword	.LASF12
 	.byte	0x1
@@ -178,7 +170,7 @@ main:
 	.uaword	0x25
 	.uleb128 0x9
 	.uaword	0x6b
-	.byte	0x7
+	.byte	0x6
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
@@ -337,12 +329,12 @@ main:
 	.section	.debug_str,"MS",@progbits,1
 .LASF6:
 	.asciz	"long long int"
-.LASF2:
-	.asciz	"short unsigned int"
 .LASF0:
 	.asciz	"unsigned int"
 .LASF14:
 	.asciz	"main.c"
+.LASF15:
+	.asciz	"/home/krithik/Desktop/marshal/ajit-toolchain/workspace/xscal/u32scal "
 .LASF13:
 	.asciz	"GNU C 4.7.4"
 .LASF3:
@@ -361,13 +353,13 @@ main:
 	.asciz	"alpha"
 .LASF11:
 	.asciz	"incx"
-.LASF15:
-	.asciz	"/home/ayush/eys/ajit-toolchain/wkspace/AJIT-libraries/xscal/u32scal "
+.LASF2:
+	.asciz	"short unsigned int"
 .LASF4:
 	.asciz	"signed char"
 .LASF5:
 	.asciz	"short int"
 .LASF9:
 	.asciz	"sizetype"
-	.ident	"GCC: (Buildroot 2014.08-g03a6b53) 4.7.4"
+	.ident	"GCC: (Buildroot 2014.08-g03a6b53-dirty) 4.7.4"
 	.section	.note.GNU-stack,"",@progbits

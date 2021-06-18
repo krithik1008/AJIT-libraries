@@ -21,8 +21,8 @@ unsigned int *u32scal(int n , unsigned int alpha , unsigned int *arr, int incx)
 unsigned int *u32scal(int n , unsigned int alpha , unsigned int *arr, int incx);
 unsigned int *main()
 {
-	int n=8,incx=1;	
-	unsigned int arr[8]={4,3,2,5,1,7,8,9};
+	int n=7,incx=1;	
+	unsigned int arr[7]={4,3,2,5,1,7,8};
 	unsigned int alpha=100;
 	return u32scal(n,alpha,&arr[0],incx);
 }

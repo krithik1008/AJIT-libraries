@@ -2,7 +2,7 @@ Info: compile with -g.
 Info: added include-directory = /usr/include.
 Info: added include-directory = ./.
 Info: added assembly-file = init.s.
-Info: added assembly-file = /home/ayush/eys/ajit-toolchain/tools/ajit_access_routines/asm/trap_handlers.s.
+Info: added assembly-file = /home/krithik/Desktop/marshal/ajit-toolchain/tools/ajit_access_routines/asm/trap_handlers.s.
 Info: added src-file = main.c.
 Info: added assembly-file = u32scal.s.
 Info: elf-file to be produced  = fact.elf.
@@ -23,7 +23,7 @@ Info: Executing:
 Info: Executing:
 	sparc-linux-as   -Av8 -am  init.s -o .//sparc-obj/init.o
 Info: Executing:
-	sparc-linux-as   -Av8 -am  /home/ayush/eys/ajit-toolchain/tools/ajit_access_routines/asm/trap_handlers.s -o .//sparc-obj/trap_handlers.o
+	sparc-linux-as   -Av8 -am  /home/krithik/Desktop/marshal/ajit-toolchain/tools/ajit_access_routines/asm/trap_handlers.s -o .//sparc-obj/trap_handlers.o
 Info: Executing:
 	sparc-linux-as   -Av8 -am  u32scal.s -o .//sparc-obj/u32scal.o
 Info: Executing:
@@ -31,7 +31,7 @@ Info: Executing:
 Info: Executing:
 	sparc-linux-as   -Av8 -am .//sparc-assembly/main.s  -o .//sparc-obj/main.o
 Info: Executing:
-	sparc-linux-ld  -nostdlib -L/home/ayush/eys/ajit-toolchain/AjitPublicResources/tools/cross-compiler/buildroot_cross_compiler/usr/sparc-buildroot-linux-uclibc/lib/ -e main -T LinkerScript.lnk .//sparc-obj/init.o  .//sparc-obj/trap_handlers.o  .//sparc-obj/u32scal.o  .//sparc-obj/main.o   -o .//fact.elf
+	sparc-linux-ld  -nostdlib -L/home/krithik/Desktop/marshal/ajit-toolchain/AjitPublicResources/tools/cross-compiler/buildroot_cross_compiler/usr/sparc-buildroot-linux-uclibc/lib/ -e main -T LinkerScript.lnk .//sparc-obj/init.o  .//sparc-obj/trap_handlers.o  .//sparc-obj/u32scal.o  .//sparc-obj/main.o   -o .//fact.elf
 Info: Executing:
 	sparc-linux-readelf  --hex-dump=.text --hex-dump=.rodata --hex-dump=.rodata.str1.8 --hex-dump=.data --hex-dump=.rodata.cst8 --hex-dump=.bss  .//fact.elf | tr -cd '\11\12\15\40-\176' | grep 0x > .//fact.hex
 Info: Executing:

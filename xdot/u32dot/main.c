@@ -1,6 +1,6 @@
 #include <stdio.h>
-unsigned int  u32dot_1(int n,unsigned int *x,int incx,unsigned int *y,int incy)
-{
+unsigned int  u32dot(int n,unsigned int *x,int incx,unsigned int *y,int incy);
+/*{
 	int i=0;
 	unsigned int ans=0;
 	if (n%2!=0)
@@ -11,13 +11,14 @@ unsigned int  u32dot_1(int n,unsigned int *x,int incx,unsigned int *y,int incy)
 	for(;i<n;i=i+2)
 	{
 		ans=ans+(x[i]*y[i]);	//using vector instructions
+		ans=ans+(x[i+1]*y[i+1]);
 	}
 	return ans;
-}
+}*/
 unsigned int main()
 {
-	int n=6,incx=1,incy=1;	
-	unsigned int x[6]={5, 3, 2, 5, 1, 10};
-	unsigned int y[6]={2, 2, 3, 4, 2, 3};
-	return u32dot_1(n,&x[0],incx,&y[0],incy);
+	int n=5,incx=1,incy=1;	
+	unsigned int x[5]={5, 3, 2, 5, 10};
+	unsigned int y[5]={2, 2, 3, 4, 3};
+	return u32dot(n,&x[0],incx,&y[0],incy);
 }

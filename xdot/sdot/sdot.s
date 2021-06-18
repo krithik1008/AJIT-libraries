@@ -3,6 +3,7 @@
 !date   : 11th June 2021
 
 !result (float) is stored in %f0 reg and in memory 
+!delay slot filled wherever possible 
 
 .section ".bss"
 .common datak,400,4
