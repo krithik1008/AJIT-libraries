@@ -26,7 +26,7 @@ sdot:   save  %sp, -104, %sp
 	ld  [ %fp + 0x44 ], %g1
      	and  %g1, 1, %g1
      	cmp  %g1, 0
-	bne,a  check
+	be,a  check
 	ld  [ %fp + -4 ], %g2		!i for loop !delay slot filling
 
 	!if n is odd one operation must be done in 32bit rest done in 64bits

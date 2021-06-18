@@ -17,13 +17,7 @@
 	.long	1084227584
 	.align 4
 .LC4:
-	.long	1067030938
-	.align 4
-.LC5:
 	.long	1082130432
-	.align 4
-.LC6:
-	.long	1075000115
 	.section	".text"
 	.align 4
 	.global main
@@ -34,13 +28,13 @@ main:
 	.file 1 "main.c"
 	.loc 1 19 0
 	.cfi_startproc
-	save	%sp, -152, %sp
+	save	%sp, -144, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
 	.loc 1 20 0
-	mov	5, %g1
+	mov	4, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
@@ -50,47 +44,39 @@ main:
 	sethi	%hi(.LC0), %g1
 	or	%g1, %lo(.LC0), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-32]
+	st	%f8, [%fp-28]
 	sethi	%hi(.LC1), %g1
 	or	%g1, %lo(.LC1), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-28]
+	st	%f8, [%fp-24]
 	sethi	%hi(.LC2), %g1
 	or	%g1, %lo(.LC2), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-24]
+	st	%f8, [%fp-20]
 	sethi	%hi(.LC3), %g1
 	or	%g1, %lo(.LC3), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-20]
-	sethi	%hi(.LC4), %g1
-	or	%g1, %lo(.LC4), %g1
 	ld	[%g1], %f8
 	st	%f8, [%fp-16]
 	.loc 1 22 0
 	sethi	%hi(.LC2), %g1
 	or	%g1, %lo(.LC2), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-52]
+	st	%f8, [%fp-44]
 	sethi	%hi(.LC2), %g1
 	or	%g1, %lo(.LC2), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-48]
+	st	%f8, [%fp-40]
 	sethi	%hi(.LC1), %g1
 	or	%g1, %lo(.LC1), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-44]
-	sethi	%hi(.LC5), %g1
-	or	%g1, %lo(.LC5), %g1
-	ld	[%g1], %f8
-	st	%f8, [%fp-40]
-	sethi	%hi(.LC6), %g1
-	or	%g1, %lo(.LC6), %g1
-	ld	[%g1], %f8
 	st	%f8, [%fp-36]
+	sethi	%hi(.LC4), %g1
+	or	%g1, %lo(.LC4), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-32]
 	.loc 1 23 0
-	add	%fp, -32, %g2
-	add	%fp, -52, %g1
+	add	%fp, -28, %g2
+	add	%fp, -44, %g1
 	ld	[%fp-4], %o0
 	mov	%g2, %o1
 	ld	[%fp-8], %o2
@@ -212,7 +198,7 @@ main:
 	.uaword	0xde
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -32
+	.sleb128 -28
 	.uleb128 0x5
 	.asciz	"y"
 	.byte	0x1
@@ -220,7 +206,7 @@ main:
 	.uaword	0xde
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -52
+	.sleb128 -44
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -230,7 +216,7 @@ main:
 	.uaword	0xd7
 	.uleb128 0x8
 	.uaword	0x6b
-	.byte	0x4
+	.byte	0x3
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
