@@ -33,11 +33,13 @@ switch(n)
 unsigned char *u8scal(int n , unsigned char alpha , unsigned char *arr, int incx);
 unsigned char *main()
 {
-	int n=23,incx=1;	
+	int n=108,incx=1;	
 	int i=0;
-	unsigned char arr[23];
+	unsigned char arr[108];
+
 	for (;i<n;i++)
-	arr[i]=i+5;
+	arr[i]=1;
+	arr[107]=5;
 	
 	unsigned char alpha=5;
 	return u8scal(n,alpha,&arr[0],incx);

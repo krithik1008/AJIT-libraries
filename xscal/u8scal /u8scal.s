@@ -17,18 +17,18 @@
 u8scal:
 
       save  %sp, -104, %sp
-      st  %i0, [ %fp + 0x44 ]	!n
-      mov  %i1, %g1				!alpha
-      st  %i2, [ %fp + 0x4c ]	!arr0
-      st  %i3, [ %fp + 0x50 ]	!incx
-      stb  %g1, [ %fp + 0x48 ]	!alpha
+      !st  %i0, [ %fp + 0x44 ]	!n
+      !mov  %i1, %g1				!alpha
+      !st  %i2, [ %fp + 0x4c ]	!arr0
+      !st  %i3, [ %fp + 0x50 ]	!incx
+      !stb  %g1, [ %fp + 0x48 ]	!alpha
 
 	  mov %i2, %g4				! arr
+	  !set 0x40000008, %g4
 
-	  clr %l0		! vector regester
-	  clr %l1		! used for 
-	  clr %l2		! multiplication
-	  clr %l3		!
+	  clr %l0		!l0 l1 l2 l3 used 
+	  clr %l1		!for vectorization  
+	  
 
       mov %i1, %l0			!
 	  sll %l0, 8, %g1		!
@@ -41,57 +41,15 @@ u8scal:
       b  while
       mov %l0, %l1		!8 alphas delay slot filling 
 
-body: ldub  [ %g3 ], %l2	! body of while loop	
+body: 
+	  ldd [%g3], %l2			! can be optimized with this
 
-	  ldub  [ %g3 + 1 ], %l5	! 8 load instructions
-	  sll %l5, 8, %l5			! proper arranged in 
-	  or %l5, %l2, %l2			! l2 and l3 regesters
-
-	  ldub  [ %g3 + 2 ], %l5
-	  sll %l5, 16, %l5
-	  or %l5, %l2, %l2
-	  
-      ldub  [ %g3 + 3 ], %l5
-	  sll %l5, 24, %l5
-	  or %l5, %l2, %l2
-
-	  ldub  [ %g3 + 4 ], %l3
-	  
-	  ldub  [ %g3 + 5 ], %l5
-	  sll %l5, 8, %l5
-	  or %l5, %l3, %l3
-	  
-	  ldub  [ %g3 + 6 ], %l5
-	  sll %l5, 16, %l5
-	  or %l5, %l3, %l3
-		
-      ldub  [ %g3 + 7 ], %l5
-	  sll %l5, 24, %l5
-	  or %l5, %l3, %l3
-	  
       vumuld8 %l0, %l2, %l2	  ! vector multiplication
 
-	  stb  %l2, [ %g3 ]		  ! 8 store instructions
-	  srl  %l2, 8, %l2
-      stb  %l2, [ %g3 + 1 ]
-      srl  %l2, 8, %l2
-      stb  %l2, [ %g3 + 2 ]
-      srl  %l2, 8, %l2
-      stb  %l2, [ %g3 + 3 ]
-
-      stb  %l3, [ %g3 + 4 ]
-	  srl  %l3, 8, %l3
-      stb  %l3, [ %g3 + 5 ]
-      srl  %l3, 8, %l3
-      stb  %l3, [ %g3 + 6 ]
-      srl  %l3, 8, %l3
-      stb  %l3, [ %g3 + 7 ]
+	  std %l2, [%g3]				! can be optimized with this
 
       add  %i0, -8, %i0		!n-=8 remaining elements
       add  %l4, 8, %l4		!i+=8 address index
-
-	  mov %g0, %l2			!l2 and l3 = 0
-	  mov %g0, %l3			!
 
 while:
       cmp  %i0, 7
