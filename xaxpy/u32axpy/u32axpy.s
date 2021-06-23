@@ -18,66 +18,52 @@
 		st  %i4, [ %fp + 0x54 ]	!arr y
 		st  %i5, [ %fp + 0x58 ] !incy
 		
-		set  datak, %g4			!results stored in mem
+		set  datak, %g4		!results stored in mem
 		
-		ld  [ %fp + 0x48 ], %l4	!alpha
-      		mov %l4,%l5		!alpha
+		mov %i1, %l4		!alpha
+      		mov %l4, %l5		!alpha
 
-      		clr  [ %fp + -4 ]		!i value
-      		ld  [ %fp + 0x44 ], %g1		!loading vlue of n
-      		and  %g1, 1, %g1
+      		mov  %g0, %g6		!i value
+      		and  %i0, 1, %g1	!loading vlue of n
       		cmp  %g1, 0			
       		be check 			!if n is even then branch
-      		ld  [ %fp + -4 ], %g2		!i for loop !delay slot filling 
+      		cmp  %g6, %i0			!if i< n !delay slot filling 
 		
 		!if n is odd one operation must be done in 32bit rest done in 64bits
-      		ld  [ %fp + 0x4c ], %g1		!loading x[0]
-		ld  [ %g1 ], %g1		
-		umul %g2, %l4, %g2		!x*alpha
-		ld  [ %fp + 0x54 ], %g1		!loading y[0]
-		ld  [ %g1 ], %g1		
-		add  %g2, %g1, %g2		!x*alpha+y
-		ld  [ %fp + 0x54 ], %g1		!putting ans back into y[0]
-		st  %g2, [ %g1 ]
-		st  %g2, [ %g4 ]		!storing to memory
-		mov  1, %g1			!i=1
-		st  %g1, [ %fp + -4 ]
+		ld  [ %i2 ], %g1		!loading x[0]
+		umul %g1, %l4, %g2		!x*alpha
+		ld  [ %i4 ], %g1		!loading y[0]
+		add  %g2, %g1, %g2		!x*alpha+y		
+		st  %g2, [ %g4 ]		!storing to memory		
+		st  %g2, [ %i4 ]		!putting ans back into y[0]
+		
+		mov  1, %g6			!i=1
 		b check
-		ld  [ %fp + -4 ], %g2		!i for loop !delay slot filling 
+		cmp  %g6, %i0			!if i< n!delay slot filling 
 
-      loop:	sll  %g1, 2, %g1		!i*4
-      		ld  [ %fp + 0x4c ], %g3		!arr &x[0]
-      		add  %g3, %g1, %g3		!x=x+(i*4) o
-      		ld  [ %g3 ], %l0		!load[x+i*4] pair in l0 l1
-		ld  [ %g3 +4 ], %l1		
+      loop:	add  %i2, %g1, %g3		!x=x+(i*4) o
+      		ldd  [ %g3 ], %l0		!load[x+i*4] pair in l0 l1
+		!ld  [ %g3 +4 ], %l1		
 		vumuld32 %l0, %l4, %l6		!multiply (x*alpha)
 
-
-		ld  [%fp+0x54],%g2		!arr &y[0]
-      		add  %g2, %g1, %g2		!y=y+(i*4) d
-		ld  [ %g2 ], %l2		!load[y+i*4] pair in l2 l3
-		ld  [ %g2 +4 ], %l3
+      		add  %i4, %g1, %g2		!y=y+(i*4) d
+		ldd  [ %g2 ], %l2		!load[y+i*4] pair in l2 l3
+		!ld  [ %g2 +4 ], %l3
 		vaddd32 %l2, %l6, %l0		!add (x*alpha)+y
 
-      		st  %l0, [ %g2 ]		!storing back into y
-		st  %l1, [ %g2 +4 ]		!storing back into y
+      		std  %l0, [ %g2 ]		!storing back into y
+		!st  %l1, [ %g2 +4 ]		!storing back into y
 		add  %g4, %g1, %g5		!mp=mp+(i*4) d => adjusting memory location	
-		st  %l0, [ %g5 ]		!storing l1 to memory
-		st  %l1, [ %g5 +4 ]		!storing l2 to memory
+		std  %l0, [ %g5 ]		!storing l0 to memory
+		!st  %l1, [ %g5 +4 ]		!storing l1 to memory
 
-      		ld  [ %fp + -4 ], %g1		!i 
-      		add  %g1, 2, %g1		! i=i+2
-      		st  %g1, [ %fp + -4 ]		! update i 
-      
-		ld  [ %fp + -4 ], %g2		!i for loop 
-     	check:	ld  [ %fp + 0x44 ], %g1		!loading n
-     		cmp  %g2, %g1			!if i< n
-     		bl  loop 			!go to body of for
-     		ld  [ %fp + -4 ], %g1		!i !delay slot filling 
-
-     					
-     		ld  [ %fp + 0x54 ], %g1 	! ld arr 
-     		mov  %g1, %i0		! returning the same array
+      		add  %g6, 2, %g6		! i=i+2 
+     		
+     		cmp  %g6, %i0			!if i< n
+     	check:	bl  loop 			!go to body of for
+     		sll  %g6, 2, %g1		!i*4 !delay slot filling 
+			
+     		mov  %i4, %i0			! returning the same array
      		restore 
      		retl 
      		nop

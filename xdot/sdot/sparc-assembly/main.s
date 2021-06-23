@@ -18,6 +18,9 @@
 	.align 4
 .LC4:
 	.long	1082130432
+	.align 4
+.LC5:
+	.long	1065353216
 	.section	".text"
 	.align 4
 	.global main
@@ -26,57 +29,65 @@
 main:
 .LFB0:
 	.file 1 "main.c"
-	.loc 1 19 0
+	.loc 1 14 0
 	.cfi_startproc
-	save	%sp, -144, %sp
+	save	%sp, -152, %sp
 .LCFI0:
 	.cfi_window_save
 	.cfi_register 15, 31
 	.cfi_def_cfa_register 30
-	.loc 1 20 0
-	mov	4, %g1
+	.loc 1 15 0
+	mov	5, %g1
 	st	%g1, [%fp-4]
 	mov	1, %g1
 	st	%g1, [%fp-8]
 	mov	1, %g1
 	st	%g1, [%fp-12]
-	.loc 1 21 0
+	.loc 1 16 0
 	sethi	%hi(.LC0), %g1
 	or	%g1, %lo(.LC0), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-28]
+	st	%f8, [%fp-32]
 	sethi	%hi(.LC1), %g1
 	or	%g1, %lo(.LC1), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-24]
+	st	%f8, [%fp-28]
 	sethi	%hi(.LC2), %g1
 	or	%g1, %lo(.LC2), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-20]
+	st	%f8, [%fp-24]
 	sethi	%hi(.LC3), %g1
 	or	%g1, %lo(.LC3), %g1
 	ld	[%g1], %f8
+	st	%f8, [%fp-20]
+	sethi	%hi(.LC2), %g1
+	or	%g1, %lo(.LC2), %g1
+	ld	[%g1], %f8
 	st	%f8, [%fp-16]
-	.loc 1 22 0
+	.loc 1 17 0
 	sethi	%hi(.LC2), %g1
 	or	%g1, %lo(.LC2), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-44]
+	st	%f8, [%fp-52]
 	sethi	%hi(.LC2), %g1
 	or	%g1, %lo(.LC2), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-40]
+	st	%f8, [%fp-48]
 	sethi	%hi(.LC1), %g1
 	or	%g1, %lo(.LC1), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-36]
+	st	%f8, [%fp-44]
 	sethi	%hi(.LC4), %g1
 	or	%g1, %lo(.LC4), %g1
 	ld	[%g1], %f8
-	st	%f8, [%fp-32]
-	.loc 1 23 0
-	add	%fp, -28, %g2
-	add	%fp, -44, %g1
+	st	%f8, [%fp-40]
+	sethi	%hi(.LC5), %g1
+	or	%g1, %lo(.LC5), %g1
+	ld	[%g1], %f8
+	st	%f8, [%fp-36]
+	.loc 1 18 0
+	add	%fp, -32, %g2
+	add	%fp, -52, %g1
 	ld	[%fp-4], %o0
 	mov	%g2, %o1
 	ld	[%fp-8], %o2
@@ -85,7 +96,7 @@ main:
 	call	sdot, 0
 	 nop
 	fmovs	%f0, %f8
-	.loc 1 24 0
+	.loc 1 19 0
 	fmovs	%f8, %f0
 	restore
 	jmp	%o7+8
@@ -160,7 +171,7 @@ main:
 	.byte	0x1
 	.uaword	.LASF17
 	.byte	0x1
-	.byte	0x12
+	.byte	0xd
 	.uaword	0xd7
 	.uaword	.LFB0
 	.uaword	.LFE0
@@ -170,7 +181,7 @@ main:
 	.uleb128 0x5
 	.asciz	"n"
 	.byte	0x1
-	.byte	0x14
+	.byte	0xf
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -178,7 +189,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF11
 	.byte	0x1
-	.byte	0x14
+	.byte	0xf
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -186,7 +197,7 @@ main:
 	.uleb128 0x6
 	.uaword	.LASF12
 	.byte	0x1
-	.byte	0x14
+	.byte	0xf
 	.uaword	0x4f
 	.byte	0x2
 	.byte	0x91
@@ -194,19 +205,19 @@ main:
 	.uleb128 0x5
 	.asciz	"x"
 	.byte	0x1
-	.byte	0x15
+	.byte	0x10
 	.uaword	0xde
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -28
+	.sleb128 -32
 	.uleb128 0x5
 	.asciz	"y"
 	.byte	0x1
-	.byte	0x16
+	.byte	0x11
 	.uaword	0xde
 	.byte	0x2
 	.byte	0x91
-	.sleb128 -44
+	.sleb128 -52
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -216,7 +227,7 @@ main:
 	.uaword	0xd7
 	.uleb128 0x8
 	.uaword	0x6b
-	.byte	0x3
+	.byte	0x4
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits

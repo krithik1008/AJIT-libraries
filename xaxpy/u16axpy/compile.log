@@ -1,0 +1,45 @@
+Info: compile with -g.
+Info: added include-directory = /usr/include.
+Info: added include-directory = ./.
+Info: added assembly-file = init.s.
+Info: added assembly-file = /home/krithik/Desktop/marshal/ajit-toolchain/tools/ajit_access_routines/asm/trap_handlers.s.
+Info: added src-file = main.c.
+Info: added assembly-file = u16axpy.s.
+Info: elf-file to be produced  = fact.elf.
+Info: var-dump-file to be produced  = fact.vars.
+Info: hex-dump-file to be produced  = fact.hex.
+Info: memory-map-file to be produced  = fact.mmap.
+Info: object-dump-file to be produced  = fact.objdump.
+Info: linker_script_file  = LinkerScript.lnk.
+Info: added define_string = AJIT.
+Info: Executing:
+	rm -rf .//sparc-assembly
+Info: Executing:
+	mkdir .//sparc-assembly
+Info: Executing:
+	rm -rf .//sparc-obj
+Info: Executing:
+	mkdir .//sparc-obj
+Info: Executing:
+	sparc-linux-as   -Av8 -am  init.s -o .//sparc-obj/init.o
+Info: Executing:
+	sparc-linux-as   -Av8 -am  /home/krithik/Desktop/marshal/ajit-toolchain/tools/ajit_access_routines/asm/trap_handlers.s -o .//sparc-obj/trap_handlers.o
+Info: Executing:
+	sparc-linux-as   -Av8 -am  u16axpy.s -o .//sparc-obj/u16axpy.o
+Info: Executing:
+	sparc-linux-gcc  -c  -S -Wall -Werror -m32 -mcpu=v8 -nostdlib -ffreestanding    -g  -I /usr/include  -I ./  -D AJIT  main.c -o .//sparc-assembly/main.s
+Info: Executing:
+	sparc-linux-as   -Av8 -am .//sparc-assembly/main.s  -o .//sparc-obj/main.o
+Info: Executing:
+	sparc-linux-ld  -nostdlib -L/home/krithik/Desktop/marshal/ajit-toolchain/AjitPublicResources/tools/cross-compiler/buildroot_cross_compiler/usr/sparc-buildroot-linux-uclibc/lib/ -e main -T LinkerScript.lnk .//sparc-obj/init.o  .//sparc-obj/trap_handlers.o  .//sparc-obj/u16axpy.o  .//sparc-obj/main.o   -o .//fact.elf
+Info: Executing:
+	sparc-linux-readelf  --hex-dump=.text --hex-dump=.rodata --hex-dump=.rodata.str1.8 --hex-dump=.data --hex-dump=.rodata.cst8 --hex-dump=.bss  .//fact.elf | tr -cd '\11\12\15\40-\176' | grep 0x > .//fact.hex
+Info: Executing:
+	sparc-linux-readelf  --symbols .//fact.elf  > .//fact.vars
+Info: Executing:
+	Info: Generating memory map .//fact.mmap
+Info: Executing:
+	sparc-linux-objdump -d  .//fact.elf > .//fact.objdump
+Info: Executing:
+	sparc-linux-readelf  `pt_load_sections.py .//fact.elf` .//fact.elf | grep 0x > .//fact.hex
+\nREADELF\n

@@ -1,0 +1,23 @@
+Info: compile with -g.
+Info: added include-directory = /usr/include.
+Info: added include-directory = ./.
+Info: added assembly-file = init.s.
+Info: added assembly-file = /home/krithik/Desktop/marshal/ajit-toolchain/tools/ajit_access_routines/asm/trap_handlers.s.
+Info: added src-file = main.c.
+Info: added assembly-file = -E.
+Info: Executing:
+	rm -rf .//sparc-assembly
+Info: Executing:
+	mkdir .//sparc-assembly
+Info: Executing:
+	rm -rf .//sparc-obj
+Info: Executing:
+	mkdir .//sparc-obj
+Info: Executing:
+	sparc-linux-as   -Av8 -am  init.s -o .//sparc-obj/init.o
+Info: Executing:
+	sparc-linux-as   -Av8 -am  /home/krithik/Desktop/marshal/ajit-toolchain/tools/ajit_access_routines/asm/trap_handlers.s -o .//sparc-obj/trap_handlers.o
+Info: Executing:
+	sparc-linux-gcc  -c  -S -Wall -Werror -m32 -mcpu=v8 -nostdlib -ffreestanding    -g  -I /usr/include  -I ./  main.c -o .//sparc-assembly/main.s
+Error: in compiling file main.c
+\nREADELF\n

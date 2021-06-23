@@ -1,3 +1,5 @@
+isamax.s: Assembler messages:
+isamax.s:34: Warning: FP branch preceded by FP instruction; NOP inserted
 readelf: Warning: Section '.rodata.cst8' was not dumped because it does not exist!
 readelf: Warning: Section '.data' was not dumped because it does not exist!
 readelf: Warning: Section '.rodata.str1.8' was not dumped because it does not exist!

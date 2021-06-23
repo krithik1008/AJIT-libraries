@@ -1,17 +1,12 @@
 #include <stdio.h>
 unsigned int  u32dot(int n,unsigned int *x,int incx,unsigned int *y,int incy);
+//normal c code for benchmarking against efficient vector implementation
 /*{
 	int i=0;
 	unsigned int ans=0;
-	if (n%2!=0)
+	for(;i<n;i=i+1)
 	{
-		ans=ans+(x[0]*y[0]);	//using 32 bit operatoin
-		i=1;
-	}
-	for(;i<n;i=i+2)
-	{
-		ans=ans+(x[i]*y[i]);	//using vector instructions
-		ans=ans+(x[i+1]*y[i+1]);
+		ans=ans+(x[i]*y[i]);	
 	}
 	return ans;
 }*/
@@ -22,3 +17,4 @@ unsigned int main()
 	unsigned int y[5]={2, 2, 3, 4, 3};
 	return u32dot(n,&x[0],incx,&y[0],incy);
 }
+
