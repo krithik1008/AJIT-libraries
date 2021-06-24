@@ -2,8 +2,8 @@
 !email  : krithik.sankar10@gmail.com
 !date   : 16th June 2021
 
-.section ".bss"
-.common datak,400,4
+!.section ".bss"
+!.common datak,400,4
 
 .section ".text"
 .align 4
@@ -18,7 +18,7 @@
 		st  %i4, [ %fp + 0x54 ]	!arr y
 		st  %i5, [ %fp + 0x58 ] !incy
 
-		set  datak, %g4			!results stored in mem
+		!set  datak, %g4			!results stored in mem
 		
 		mov 0, %g5		
 		
@@ -76,7 +76,7 @@
 		*/
 		
 		std %l0, [%i4+%g1]
-		std %l0, [%g4+%g1]
+		!std %l0, [%g4+%g1]
 
 		add  %i0, -4, %i0		! n=n-4
  		add  %g5, 4, %g5		! i=i+4	update i
@@ -107,7 +107,7 @@
 		umul %g2, %i1, %g2
 		lduh [%i4 + %g1], %g3
 		add %g2, %g3, %g2
-		sth %g2, [%g4+%g1]
+		!sth %g2, [%g4+%g1]
 		sth %g2, [%i4+%g1]
 		add %g1, 2, %g1
 
@@ -115,7 +115,7 @@
 	two:	umul %g2, %i1, %g2
 		lduh [%i4 + %g1], %g3
 		add %g2, %g3, %g2
-		sth %g2, [%g4+%g1]
+		!sth %g2, [%g4+%g1]
 		sth %g2, [%i4+%g1]
 		add %g1, 2, %g1
 
@@ -123,7 +123,7 @@
 	one:	umul %g2, %i1, %g2
 		lduh [%i4 + %g1], %g3
 		add %g2, %g3, %g2
-		sth %g2, [%g4+%g1]
+		!sth %g2, [%g4+%g1]
 		sth %g2, [%i4+%g1]
 		add %g1, 2, %g1	
      			
