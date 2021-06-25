@@ -1,4 +1,3 @@
-Info: compile with -g.
 Info: added include-directory = /usr/include.
 Info: added include-directory = ./.
 Info: added assembly-file = init.s.
@@ -12,6 +11,7 @@ Info: memory-map-file to be produced  = fact.mmap.
 Info: object-dump-file to be produced  = fact.objdump.
 Info: linker_script_file  = LinkerScript.lnk.
 Info: added define_string = AJIT.
+Info: optimization level = 3
 Info: Executing:
 	rm -rf .//sparc-assembly
 Info: Executing:
@@ -27,7 +27,7 @@ Info: Executing:
 Info: Executing:
 	sparc-linux-as   -Av8 -am  u16axpy.s -o .//sparc-obj/u16axpy.o
 Info: Executing:
-	sparc-linux-gcc  -c  -S -Wall -Werror -m32 -mcpu=v8 -nostdlib -ffreestanding    -g  -I /usr/include  -I ./  -D AJIT  main.c -o .//sparc-assembly/main.s
+	sparc-linux-gcc  -c  -S -Wall -Werror -m32 -mcpu=v8 -nostdlib -ffreestanding    -O3  -ffreestanding     -I /usr/include  -I ./  -D AJIT  main.c -o .//sparc-assembly/main.s
 Info: Executing:
 	sparc-linux-as   -Av8 -am .//sparc-assembly/main.s  -o .//sparc-obj/main.o
 Info: Executing:

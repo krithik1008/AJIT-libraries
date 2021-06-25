@@ -30,8 +30,8 @@ unsigned short int* main()
 	int i=0;
 	for(;i<n;i++)
 	{
-		x[i]=1;
-		y[i]=1;
+		x[i]=i;
+		y[i]=2;
 	}
 	return u16axpy(n,alpha,&x[0],incx,&y[0],incy);
 }

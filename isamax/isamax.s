@@ -21,26 +21,23 @@
       		st  %i2, [ %fp + 0x4c ]	!value of incx
 
       		mov  1, %l1		!value of i=1
-		mov  1, %l2		!storing result
       		ld  [ %i1 ], %f1	!loading first val. of array (x[0])
 		fabss %f1,%f1		!absolute value
       		b  check
-      		cmp  %l1, %i0		!checking if i<n 
+      		mov  1, %l2		!storing result
 
       loop:	add  %i1, %g1, %g2	
       		ld  [ %g2 ], %f9	!loading x[i]
 		fabss %f9,%f9
       		fcmpes  %f9, %f1
-      		fbule  smaller 
-      		nop 
+      		fbule  check 
+      		inc  %l1 
      
       		fmovs %f9, %f1	!updating temp maximux value
       		mov %l1, %l2	!storing index of largest
-
-      smaller:	inc  %l1
       		
-      		cmp  %l1, %i0		!checking if i<n
-      check:	bl  loop
+      check:	cmp  %l1, %i0		!checking if i<n
+      		bl  loop
       		sll  %l1, 2, %g1	!i*4 
 
         	mov  %l2, %i0

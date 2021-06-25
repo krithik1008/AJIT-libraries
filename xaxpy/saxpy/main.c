@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-float *saxpy(int N,float alpha,float *X,int incX,float *Y,int incY);
-/*float *saxpy_1(int N,float alpha,float *X,int incX,float *Y,int incY)
+float *saxpy(int N,float alpha,float *X, int incX,float *Y,int incY);
+/*float *saxpy_1(int N,float alpha,float *X, int incX,float *Y,int incY)
 //normal c code for benchmarking against efficient vector implementation
 {
 	if (incX == 1 && incY == 1)
@@ -23,18 +23,18 @@ float *saxpy(int N,float alpha,float *X,int incX,float *Y,int incY);
 }*/
 float* main()
 {
-	int n=1000,incx=1,incy=1;	
+	int n=100,incx=1,incy=1;	
 	
 	//float* x=(float*)os_malloc(5*sizeof(float));
 	//float* y=(float*)os_malloc(5*sizeof(float));
 
-	float x[1000];
-	float y[1000];
+	float x[100];
+	float y[100];
 	int i=0;
 	for(;i<n;i++)
 	{
-		x[i]=2;
-		y[i]=1;
+		x[i]=i;
+		y[i]=2;
 	}
 	float alpha=1.1;
 	return saxpy(n,alpha,&x[0],incx,&y[0],incy);

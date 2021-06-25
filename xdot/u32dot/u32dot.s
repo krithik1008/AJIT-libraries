@@ -20,10 +20,11 @@ u32dot: save  %sp, -104, %sp
       	st  %i3, [ %fp + 0x50 ]	!array y
       	st  %i4, [ %fp + 0x54 ] !int incy
 
-      	mov 0, %l1		!i=0
-	mov 0, %g5 		!result will be stored in g5
+      	clr %l1		!i=0
+	clr %g5 		!result will be stored in g5
 	
      	and  %i0, 1, %g1
+	sll %i0, 2, %i0
      	cmp  %g1, 0
 	be  check
 	cmp  %l1, %i0		!if i< n !delay slot filling
@@ -36,23 +37,22 @@ u32dot: save  %sp, -104, %sp
 	b check
 	cmp  %l1, %i0		!if i< n!delay slot filling
 
-loop: 	add  %i1, %g1, %g2	!x+(i*4)
-      	ld  [%g2], %l4		!load first value of array x into l4
-	ld  [%g2+4], %l5	!load next value of array x into l5
+loop: 	
+	!ld  [%g2+4], %l5	!load next value of array x into l5
 
-      	add  %i3, %g1, %g3	!y+(i*4)
-      	ld  [%g3], %l6		!load first value of array y into l6
-	ld  [%g3+4], %l7	!load next value of array y into l7
+	ldd  [%l1+%i3], %l6	!load first value of array y into l6
+	!ld  [%g3+4], %l7	!load next value of array y into l7
 
       	vumuld32  %l4, %l6, %l2	!multiplying x[i]*y[i]
 	add %l2, %l3, %l2
       	add  %g5, %l2, %g5	!summing
-      	add  %l1, 2, %l1	!i=i+2
+      	add  %l1, 8, %l1	!i=i+8
 	
 	cmp  %l1, %i0		!if i< n
 
-check:  bl  loop 		!go to body of for
-	sll  %l1, 2, %g1	!i*4!delay slot filling
+check:  bl,a  loop 		!go to body of for
+	ldd  [%i1+%l1], %l4		!load first value of array x into l4
+	!sll  %l1, 2, %g1	!i*4!delay slot filling
 
 	set  datak, %g4		!results stored in mem
 	st   %g5, [%g4]		!storing g5 (result) to memory	

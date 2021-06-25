@@ -50,17 +50,12 @@
 		b check
 		cmp  %l1, %i0			!if i< n 
 
-	loop:	ldd [ %g3 ], %f8		!load[x+i*4] pair in f8 f9		
-		!ld  [ %g3+4 ], %f9		
-		vfmul32 %f8, %f10, %f2		!multiply (x*alpha)
+	loop:	vfmul32 %f8, %f10, %f2		!multiply (x*alpha)
 			
-		add  %i4, %l1, %g2		!y=y+(i*4) d
-		ldd  [ %g2 ], %f6		!load[y+i*4] pair in f6 f7
-		!ld  [ %g2+4 ], %f7	
+		ldd  [ %i4+%l1 ], %f6		!load[y+i*4] pair in f6 f7
 		vfadd32 %f6, %f2, %f8		!add (x*alpha)+y
 
-      		std  %f8, [ %g2 ]		!storing back into y
-		!st  %f9, [ %g2 +4]
+      		std  %f8, [ %i4+%l1 ]		!storing back into y
 			!add  %g4, %l1, %g5		!mp=mp+(i*4) d => adjusting memory location
 			!std  %f8, [ %g5 ]		!storing f8 and f9 to memory
 			
@@ -68,7 +63,7 @@
  
 		cmp  %l1, %i0			!if i< n
      	check:	bl  loop
-		add  %i2, %l1, %g3		!x=x+(i*4) o
+		ldd [ %i2+%l1 ], %f8		!load[x+i*4] pair in f8 f9
 
      		mov  %i4, %i0			! returning the same array
      		restore 

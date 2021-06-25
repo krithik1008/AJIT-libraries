@@ -27,7 +27,7 @@
 		b check	
 		nop	
 
-      loop:	add %i1, %g1, %g2
+      loop:	
 			/*     		
 			lduh  [ %g2 ], %l0		!arr &x[0]
       			lduh [ %g2 + 2 ], %g3	
@@ -38,9 +38,8 @@
       			sll %g3, 16, %g3
 			or %g3, %l1, %l1
 			*/
-		ldd [%g2], %l0
+		ldd [%i1+%g1], %l0
 
-		add %i3, %g1, %g2
 			/*      		
 			lduh  [ %g2 ], %l2		!arr &y[0]
       			lduh [ %g2 + 2 ], %g3	
@@ -51,7 +50,7 @@
       			sll %g3, 16, %g3
 			or %g3, %l3, %l3
 			*/
-		ldd [%g2], %l2
+		ldd [%i3+%g1], %l2
 
 		vumuld16 %l2, %l0, %l6		! (x*y)
 

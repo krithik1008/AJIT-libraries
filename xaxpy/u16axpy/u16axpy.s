@@ -30,8 +30,7 @@
 		b check	
 		nop	
 
-      loop:	add %i2, %g1, %g2
-		/*      		
+      loop:	/*      		
 		lduh  [ %g2 ], %l0		!arr &x[0]
       		lduh [ %g2 + 2 ], %g3	
 		sll %g3, 16, %g3
@@ -41,11 +40,9 @@
       		sll %g3, 16, %g3
 		or %g3, %l1, %l1
 		*/
-		ldd [%g2], %l0
+		ldd [%i2+%g1], %l0
 	
 		vumuld16 %l0, %l4, %l6		!multiply (x*alpha)
-
-		add %i4, %g1, %g2
 		/*      		
 		lduh  [ %g2 ], %l2		!arr &y[0]
       		lduh [ %g2 + 2 ], %g3	
@@ -56,7 +53,7 @@
       		sll %g3, 16, %g3
 		or %g3, %l3, %l3
 		*/
-		ldd [%g2], %l2
+		ldd [%i4+ %g1], %l2
 
 		vaddd16 %l2, %l6, %l0		!add (x*alpha)+y
 

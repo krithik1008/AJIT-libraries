@@ -1,21 +1,37 @@
 #include <stdio.h>
-unsigned int *u32axpy(int n,unsigned int alpha,unsigned int *x,int incx,unsigned int *y,int incy);
+unsigned int *u32axpy(int N,unsigned int alpha,unsigned int *X,int incX,unsigned int *Y,int incY);
 //normal c code for benchmarking against efficient vector implementation
 /*{
-	int i=0;
-	for(;i<n;i=i+1)
+	if (incX == 1 && incY == 1)
 	{
-		y[i]=(alpha*x[i])+y[i];	//implemented using vector operations 
-	}
-	return y;	
+    		const int m = N % 4;
+		int i;
+    		for (i = 0; i < m; i++){
+      		Y[i] += alpha * X[i];
+    		}
+
+    		for (i = m; i + 3 < N; i += 4) {
+      			Y[i] += alpha * X[i];
+      			Y[i + 1] += alpha * X[i + 1];
+      			Y[i + 2] += alpha * X[i + 2];
+      			Y[i + 3] += alpha * X[i + 3];
+    		}
+  	}
+	return Y;	
 	
 	
 }*/
 unsigned int* main()
 {
-	int n=6,incx=1,incy=1;	
-	unsigned int x[6]={4,2,3,4,1,2};
-	unsigned int y[6]={2,4,3,4,2,1};
+	int n=1000,incx=1,incy=1;	
+	unsigned int x[1000];
+	unsigned int y[1000];
 	unsigned int alpha=3;
+	int i=0;
+	for(;i<n;i++)
+	{
+		x[i]=i;
+		y[i]=2;
+	}
 	return u32axpy(n,alpha,&x[0],incx,&y[0],incy);
 }
