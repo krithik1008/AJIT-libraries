@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<math.h>
 /*
 float sasum(int n, float *arr, int incx)
 {	int x=n-1;
@@ -37,11 +38,28 @@ float sasum(int n, float *arr, int incx)
 	return sum ;
 
 }
+
+
+ float __attribute__ ((noinline)) sasum(int n, float *arr, int incx)
+{
+	int i=0;
+	float r=0;
+	for (; i < n; i++) {
+    	r += fabs(arr[i]);
+  	}
+	
+  	return r;
+}
 */
+
 float sasum(int n, float *arr, int incx);
+float *gen(void);
+
+
 float main()
 {
-	int n=3,incx=1;	
-	float arr[3]={-4.781002,3.457821,-2.457896};
+	int n=1000,incx=1;	
+	float *arr;
+	arr=gen();	
 	return sasum(n,&arr[0],incx);
 }
