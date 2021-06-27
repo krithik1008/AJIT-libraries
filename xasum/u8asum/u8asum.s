@@ -2,8 +2,9 @@
 !email  : mittalayush129@gmail.com
 !date   : 20th June 2021
 !Note 	: Result is 8 bit sum 
-!delay slot filling is performed wherever possible.
-!more optimized code than compiler generates.
+!adding 0x0(~sign bit 1) to 0xff will form the mask for negative no. 
+!adding 0x1(~sign bit 0) to 0xff will form the mask for positive no.
+!above two task performed with the help of addn instruction.
 !info about load store
 !m8 m7 m6 .... m0 in memory m0 = byte
 !a0 a1 a2......a7 in register a = byte
@@ -21,20 +22,18 @@ u8asum:
         !  %i3	!incx
 		set 0x80808080, %i4 ! mask for finding
 		set 0x80808080, %i5 ! absolute
+		set -1, %o0			! used for finding
+		set -1, %o1			! absolute
 
         cmp %i0,8
 	   	bl o
 	    mov %i1, %g3
 
 		ldd [%g3], %l0			! %l0 %l1 contain data
-		andd %l0, %i4, %o2		! %o2 %o3 %o4 %o5 used for
-		srld %o2, 1,   %o4		! mask
-		ord %o2, %o4,  %o2		!
-		srld %o2, 2,   %o4		!
-		ord %o2, %o4,  %o2		! to find the absolute
-		srld %o2, 4,   %o4		!
-		ord %o2, %o4,   %o2		!
-		xord %l0, %o2, %l0		!
+		anddn %i4, %l0, %o2		! forming mask with sign
+		srld %o2, 7, %o2		! bit
+		vaddd8 %o0, %o2, %o2
+		xord %l0, %o2, %l0		! finding absolute
 		vsubd8 %l0, %o2, %l0	
 
         b  while
@@ -42,17 +41,13 @@ u8asum:
 
 
 body:   ldd [%g3], %l2			! %l2 %l3 contain data
-		andd %l2, %i4, %o2		! %o2 %o3 %o4 %o5 used for
-		srld %o2, 1,   %o4		! mask
-		ord %o2, %o4,  %o2		!
-		srld %o2, 2,   %o4		!
-		ord %o2, %o4,  %o2		! to find the absolute
-		srld %o2, 4,   %o4		!
-		ord %o2, %o4,   %o2		!
-		xord %l2, %o2, %l2		!
-		vsubd8 %l2, %o2, %l2	!
+		anddn %i4, %l2, %o2		! forming mask with sign
+		srld %o2, 7, %o2		! mask 
+		vaddd8 %o0, %o2, %o2
+		xord %l2, %o2, %l2		! finding absolute
+		vsubd8 %l2, %o2, %l2	
 
-		vaddd8 %l0, %l2, %l0		
+		vaddd8 %l0, %l2, %l0	
 		add  %i0, -8, %i0		!n-=8 remaining elements
 while:
      	cmp  %i0, 7
