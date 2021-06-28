@@ -36,12 +36,49 @@ int u32asum(int n, int *arr, int incx)
 	return sum ;
 
 }
+
+int abs(int x)
+{
+	if (x<0) return -x;
+	else return x;
+}
 */
 
-int u32asum(int n, int *arr, int incx);
+int u32asum(int n, int *arr, int incx)
+{
+	
+	int i=0;
+	int sum=0;
+	 for (;i <n; ++i)
+          {
+           	if (arr[i]>=0)
+			sum+=arr[i];
+		else sum+= -arr[i];
+          }
+
+	return sum;
+
+}
+
+
+
+
+
+//int u32asum(int n, int *arr, int incx);
+
+int *gen(void);
 int main()
 {
-	int n=2,incx=1;	
-	int arr[2]={-100,-400};
+	int n=100,incx=1;		
+	int *arr;
+	arr=gen();
 	return u32asum(n,&arr[0],incx);
 }
+
+
+
+
+
+
+
+
