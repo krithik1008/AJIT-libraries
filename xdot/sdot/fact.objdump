@@ -19,102 +19,139 @@ Disassembly of section .text:
       2c:	01 00 00 00 	nop 
       30:	91 d0 20 00 	ta  0
 
-00000034 <sdot>:
-      34:	9d e3 bf 98 	save  %sp, -104, %sp
-      38:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
-      3c:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
-      40:	f4 27 a0 4c 	st  %i2, [ %fp + 0x4c ]
-      44:	f6 27 a0 50 	st  %i3, [ %fp + 0x50 ]
-      48:	f8 27 a0 54 	st  %i4, [ %fp + 0x54 ]
-      4c:	a8 10 20 00 	clr  %l4
-      50:	c0 27 bf f8 	clr  [ %fp + -8 ]
-      54:	c5 07 bf f8 	ld  [ %fp + -8 ], %f2
-      58:	82 0e 20 01 	and  %i0, 1, %g1
-      5c:	80 a0 60 00 	cmp  %g1, 0
-      60:	b1 2e 20 02 	sll  %i0, 2, %i0
-      64:	02 80 00 0e 	be  9c <check>
-      68:	80 a5 00 18 	cmp  %l4, %i0
-      6c:	d3 06 40 00 	ld  [ %i1 ], %f9
-      70:	d1 06 c0 00 	ld  [ %i3 ], %f8
-      74:	85 a2 49 28 	fmuls  %f9, %f8, %f2
-      78:	a8 10 20 04 	mov  4, %l4
-      7c:	10 80 00 08 	b  9c <check>
-      80:	80 a5 00 18 	cmp  %l4, %i0
+00000034 <genx>:
+      34:	9d e3 bf 88 	save  %sp, -120, %sp
+      38:	31 10 00 00 	sethi  %hi(0x40000000), %i0
+      3c:	b0 16 20 00 	mov  %i0, %i0	! 40000000 <datax>
+      40:	81 e8 00 00 	restore 
+      44:	81 c3 e0 08 	retl 
+      48:	01 00 00 00 	nop 
 
-00000084 <loop>:
-      84:	cd 1e c0 14 	ldd  [ %i3 + %l4 ], %f6
-      88:	91 a1 28 c6 	vfmul32  %f4, %f6, %f8
-      8c:	91 a2 08 29 	fadds  %f8, %f9, %f8
-      90:	85 a0 88 28 	fadds  %f2, %f8, %f2
-      94:	a8 05 20 08 	add  %l4, 8, %l4
-      98:	80 a5 00 18 	cmp  %l4, %i0
+0000004c <geny>:
+      4c:	9d e3 bf 88 	save  %sp, -120, %sp
+      50:	31 10 00 03 	sethi  %hi(0x40000c00), %i0
+      54:	b0 16 23 a0 	or  %i0, 0x3a0, %i0	! 40000fa0 <datay>
+      58:	81 e8 00 00 	restore 
+      5c:	81 c3 e0 08 	retl 
+      60:	01 00 00 00 	nop 
 
-0000009c <check>:
-      9c:	06 bf ff fa 	bl  84 <loop>
-      a0:	c9 1e 40 14 	ldd  [ %i1 + %l4 ], %f4
+00000064 <sdot>:
+      64:	9d e3 bf 98 	save  %sp, -104, %sp
+      68:	f0 27 a0 44 	st  %i0, [ %fp + 0x44 ]
+      6c:	f2 27 a0 48 	st  %i1, [ %fp + 0x48 ]
+      70:	f4 27 a0 4c 	st  %i2, [ %fp + 0x4c ]
+      74:	f6 27 a0 50 	st  %i3, [ %fp + 0x50 ]
+      78:	f8 27 a0 54 	st  %i4, [ %fp + 0x54 ]
+      7c:	c0 27 bf f8 	clr  [ %fp + -8 ]
+      80:	c5 07 bf f8 	ld  [ %fp + -8 ], %f2
+      84:	8c 10 20 10 	mov  0x10, %g6
+      88:	8e 10 20 18 	mov  0x18, %g7
+      8c:	aa 10 20 08 	mov  8, %l5
+      90:	82 0e 20 01 	and  %i0, 1, %g1
+      94:	80 a0 60 00 	cmp  %g1, 0
+      98:	02 80 00 08 	be  b8 <four>
+      9c:	a8 10 00 00 	mov  %g0, %l4
+      a0:	d3 06 40 00 	ld  [ %i1 ], %f9
+      a4:	d1 06 c0 00 	ld  [ %i3 ], %f8
+      a8:	85 a2 49 28 	fmuls  %f9, %f8, %f2
+      ac:	a8 05 20 04 	add  %l4, 4, %l4
+      b0:	aa 05 60 04 	add  %l5, 4, %l5
+      b4:	b0 26 20 01 	dec  %i0
 
-000000a4 <store>:
-      a4:	81 a0 00 22 	fmovs  %f2, %f0
-      a8:	81 e8 00 00 	restore 
-      ac:	81 c3 e0 08 	retl 
-      b0:	01 00 00 00 	nop 
+000000b8 <four>:
+      b8:	80 8e 20 03 	btst  3, %i0
+      bc:	b1 2e 20 02 	sll  %i0, 2, %i0
+      c0:	02 80 00 16 	be  118 <check>
+      c4:	80 a5 00 18 	cmp  %l4, %i0
+      c8:	d1 1e 40 14 	ldd  [ %i1 + %l4 ], %f8
+      cc:	cd 1e c0 14 	ldd  [ %i3 + %l4 ], %f6
+      d0:	95 a2 28 c6 	vfmul32  %f8, %f6, %f10
+      d4:	8d a2 88 2b 	fadds  %f10, %f11, %f6
+      d8:	85 a1 88 22 	fadds  %f6, %f2, %f2
+      dc:	a8 05 20 08 	add  %l4, 8, %l4
+      e0:	aa 05 60 08 	add  %l5, 8, %l5
+      e4:	10 80 00 0d 	b  118 <check>
+      e8:	80 a5 00 18 	cmp  %l4, %i0
 
-000000b4 <window_overflow_trap_handler>:
-      b4:	a7 50 00 00 	rd  %wim, %l3
-      b8:	a9 2c e0 07 	sll  %l3, 7, %l4
-      bc:	a7 34 e0 01 	srl  %l3, 1, %l3
-      c0:	a6 14 c0 14 	or  %l3, %l4, %l3
-      c4:	a6 0c e0 ff 	and  %l3, 0xff, %l3
-      c8:	81 90 00 00 	mov  %g0, %wim
-      cc:	01 00 00 00 	nop 
-      d0:	01 00 00 00 	nop 
-      d4:	01 00 00 00 	nop 
-      d8:	81 e0 00 00 	save 
-      dc:	e0 3b a0 00 	std  %l0, [ %sp ]
-      e0:	e4 3b a0 08 	std  %l2, [ %sp + 8 ]
-      e4:	e8 3b a0 10 	std  %l4, [ %sp + 0x10 ]
-      e8:	ec 3b a0 18 	std  %l6, [ %sp + 0x18 ]
-      ec:	f0 3b a0 20 	std  %i0, [ %sp + 0x20 ]
-      f0:	f4 3b a0 28 	std  %i2, [ %sp + 0x28 ]
-      f4:	f8 3b a0 30 	std  %i4, [ %sp + 0x30 ]
-      f8:	fc 3b a0 38 	std  %fp, [ %sp + 0x38 ]
-      fc:	81 e8 00 00 	restore 
-     100:	81 90 00 13 	mov  %l3, %wim
-     104:	01 00 00 00 	nop 
-     108:	01 00 00 00 	nop 
-     10c:	01 00 00 00 	nop 
-     110:	81 c4 40 00 	jmp  %l1
-     114:	81 cc 80 00 	rett  %l2
+000000ec <loop>:
+      ec:	cd 1e c0 14 	ldd  [ %i3 + %l4 ], %f6
+      f0:	91 a1 28 c6 	vfmul32  %f4, %f6, %f8
+      f4:	91 a2 08 29 	fadds  %f8, %f9, %f8
+      f8:	85 a0 88 28 	fadds  %f2, %f8, %f2
+      fc:	c9 1e 40 15 	ldd  [ %i1 + %l5 ], %f4
+     100:	cd 1e c0 15 	ldd  [ %i3 + %l5 ], %f6
+     104:	91 a1 28 c6 	vfmul32  %f4, %f6, %f8
+     108:	91 a2 08 29 	fadds  %f8, %f9, %f8
+     10c:	85 a0 88 28 	fadds  %f2, %f8, %f2
+     110:	a8 05 02 46 	vaddd32  %l4, %g6, %l4
+     114:	80 a5 00 18 	cmp  %l4, %i0
 
-00000118 <window_underflow_trap_handler>:
-     118:	a7 50 00 00 	rd  %wim, %l3
-     11c:	a9 34 e0 07 	srl  %l3, 7, %l4
-     120:	a7 2c e0 01 	sll  %l3, 1, %l3
-     124:	a6 14 c0 14 	or  %l3, %l4, %l3
-     128:	a6 0c e0 ff 	and  %l3, 0xff, %l3
-     12c:	81 90 00 00 	mov  %g0, %wim
-     130:	01 00 00 00 	nop 
-     134:	01 00 00 00 	nop 
-     138:	01 00 00 00 	nop 
-     13c:	81 e8 00 00 	restore 
-     140:	81 e8 00 00 	restore 
-     144:	e0 1b a0 00 	ldd  [ %sp ], %l0
-     148:	e4 1b a0 08 	ldd  [ %sp + 8 ], %l2
-     14c:	e8 1b a0 10 	ldd  [ %sp + 0x10 ], %l4
-     150:	ec 1b a0 18 	ldd  [ %sp + 0x18 ], %l6
-     154:	f0 1b a0 20 	ldd  [ %sp + 0x20 ], %i0
-     158:	f4 1b a0 28 	ldd  [ %sp + 0x28 ], %i2
-     15c:	f8 1b a0 30 	ldd  [ %sp + 0x30 ], %i4
-     160:	fc 1b a0 38 	ldd  [ %sp + 0x38 ], %fp
-     164:	81 e0 00 00 	save 
-     168:	81 e0 00 00 	save 
-     16c:	81 90 00 13 	mov  %l3, %wim
-     170:	01 00 00 00 	nop 
-     174:	01 00 00 00 	nop 
-     178:	01 00 00 00 	nop 
-     17c:	81 c4 40 00 	jmp  %l1
-     180:	81 cc 80 00 	rett  %l2
-     184:	00 00 00 00 	unimp  0
+00000118 <check>:
+     118:	06 bf ff f5 	bl  ec <loop>
+     11c:	c9 1e 40 14 	ldd  [ %i1 + %l4 ], %f4
+
+00000120 <store>:
+     120:	81 a0 00 22 	fmovs  %f2, %f0
+     124:	81 e8 00 00 	restore 
+     128:	81 c3 e0 08 	retl 
+     12c:	01 00 00 00 	nop 
+
+00000130 <window_overflow_trap_handler>:
+     130:	a7 50 00 00 	rd  %wim, %l3
+     134:	a9 2c e0 07 	sll  %l3, 7, %l4
+     138:	a7 34 e0 01 	srl  %l3, 1, %l3
+     13c:	a6 14 c0 14 	or  %l3, %l4, %l3
+     140:	a6 0c e0 ff 	and  %l3, 0xff, %l3
+     144:	81 90 00 00 	mov  %g0, %wim
+     148:	01 00 00 00 	nop 
+     14c:	01 00 00 00 	nop 
+     150:	01 00 00 00 	nop 
+     154:	81 e0 00 00 	save 
+     158:	e0 3b a0 00 	std  %l0, [ %sp ]
+     15c:	e4 3b a0 08 	std  %l2, [ %sp + 8 ]
+     160:	e8 3b a0 10 	std  %l4, [ %sp + 0x10 ]
+     164:	ec 3b a0 18 	std  %l6, [ %sp + 0x18 ]
+     168:	f0 3b a0 20 	std  %i0, [ %sp + 0x20 ]
+     16c:	f4 3b a0 28 	std  %i2, [ %sp + 0x28 ]
+     170:	f8 3b a0 30 	std  %i4, [ %sp + 0x30 ]
+     174:	fc 3b a0 38 	std  %fp, [ %sp + 0x38 ]
+     178:	81 e8 00 00 	restore 
+     17c:	81 90 00 13 	mov  %l3, %wim
+     180:	01 00 00 00 	nop 
+     184:	01 00 00 00 	nop 
+     188:	01 00 00 00 	nop 
+     18c:	81 c4 40 00 	jmp  %l1
+     190:	81 cc 80 00 	rett  %l2
+
+00000194 <window_underflow_trap_handler>:
+     194:	a7 50 00 00 	rd  %wim, %l3
+     198:	a9 34 e0 07 	srl  %l3, 7, %l4
+     19c:	a7 2c e0 01 	sll  %l3, 1, %l3
+     1a0:	a6 14 c0 14 	or  %l3, %l4, %l3
+     1a4:	a6 0c e0 ff 	and  %l3, 0xff, %l3
+     1a8:	81 90 00 00 	mov  %g0, %wim
+     1ac:	01 00 00 00 	nop 
+     1b0:	01 00 00 00 	nop 
+     1b4:	01 00 00 00 	nop 
+     1b8:	81 e8 00 00 	restore 
+     1bc:	81 e8 00 00 	restore 
+     1c0:	e0 1b a0 00 	ldd  [ %sp ], %l0
+     1c4:	e4 1b a0 08 	ldd  [ %sp + 8 ], %l2
+     1c8:	e8 1b a0 10 	ldd  [ %sp + 0x10 ], %l4
+     1cc:	ec 1b a0 18 	ldd  [ %sp + 0x18 ], %l6
+     1d0:	f0 1b a0 20 	ldd  [ %sp + 0x20 ], %i0
+     1d4:	f4 1b a0 28 	ldd  [ %sp + 0x28 ], %i2
+     1d8:	f8 1b a0 30 	ldd  [ %sp + 0x30 ], %i4
+     1dc:	fc 1b a0 38 	ldd  [ %sp + 0x38 ], %fp
+     1e0:	81 e0 00 00 	save 
+     1e4:	81 e0 00 00 	save 
+     1e8:	81 90 00 13 	mov  %l3, %wim
+     1ec:	01 00 00 00 	nop 
+     1f0:	01 00 00 00 	nop 
+     1f4:	01 00 00 00 	nop 
+     1f8:	81 c4 40 00 	jmp  %l1
+     1fc:	81 cc 80 00 	rett  %l2
+     200:	00 00 00 00 	unimp  0
 	...
 
 00001000 <trap_table_base>:
@@ -148,13 +185,13 @@ Disassembly of section .text:
     104c:	01 00 00 00 	nop 
 
 00001050 <HW_trap_0x05>:
-    1050:	10 bf fc 19 	b  b4 <window_overflow_trap_handler>
+    1050:	10 bf fc 38 	b  130 <window_overflow_trap_handler>
     1054:	01 00 00 00 	nop 
     1058:	01 00 00 00 	nop 
     105c:	01 00 00 00 	nop 
 
 00001060 <HW_trap_0x06>:
-    1060:	10 bf fc 2e 	b  118 <window_underflow_trap_handler>
+    1060:	10 bf fc 4d 	b  194 <window_underflow_trap_handler>
     1064:	01 00 00 00 	nop 
     1068:	01 00 00 00 	nop 
     106c:	01 00 00 00 	nop 
@@ -1652,31 +1689,12 @@ Disassembly of section .text:
     1ffc:	01 00 00 00 	nop 
 
 00002000 <main>:
-    2000:	9d e3 b0 00 	save  %sp, -4096, %sp
-    2004:	09 10 00 00 	sethi  %hi(0x40000000), %g4
-    2008:	9c 03 b0 58 	add  %sp, -4008, %sp
-    200c:	84 10 20 00 	clr  %g2
-    2010:	82 10 20 00 	clr  %g1
-    2014:	96 07 b0 60 	add  %fp, -4000, %o3
-    2018:	d3 01 20 00 	ld  [ %g4 ], %f9
-    201c:	09 3f ff f8 	sethi  %hi(0xffffe000), %g4
-    2020:	88 11 20 bc 	or  %g4, 0xbc, %g4	! ffffe0bc <main+0xffffc0bc>
-    2024:	88 01 00 1e 	add  %g4, %fp, %g4
-    2028:	c2 21 00 00 	st  %g1, [ %g4 ]
-    202c:	d5 01 00 00 	ld  [ %g4 ], %f10
-    2030:	09 3f ff f8 	sethi  %hi(0xffffe000), %g4
-    2034:	91 a0 18 8a 	fitos  %f10, %f8
-    2038:	88 11 20 c0 	or  %g4, 0xc0, %g4
-    203c:	d3 22 c0 02 	st  %f9, [ %o3 + %g2 ]
-    2040:	92 07 80 04 	add  %fp, %g4, %o1
-    2044:	d1 20 80 09 	st  %f8, [ %g2 + %o1 ]
-    2048:	82 00 60 01 	inc  %g1
-    204c:	80 a0 63 e8 	cmp  %g1, 0x3e8
-    2050:	12 bf ff f3 	bne  201c <main+0x1c>
-    2054:	84 00 a0 04 	add  %g2, 4, %g2
-    2058:	90 10 23 e8 	mov  0x3e8, %o0
-    205c:	94 10 20 01 	mov  1, %o2
-    2060:	7f ff f7 f5 	call  34 <sdot>
-    2064:	98 10 20 01 	mov  1, %o4
-    2068:	81 c7 e0 08 	ret 
-    206c:	81 e8 00 00 	restore 
+    2000:	9d e3 bf a0 	save  %sp, -96, %sp
+    2004:	7f ff f8 0c 	call  34 <genx>
+    2008:	b0 10 20 64 	mov  0x64, %i0
+    200c:	b2 10 00 08 	mov  %o0, %i1
+    2010:	7f ff f8 0f 	call  4c <geny>
+    2014:	b4 10 20 01 	mov  1, %i2
+    2018:	b8 10 20 01 	mov  1, %i4
+    201c:	7f ff f8 12 	call  64 <sdot>
+    2020:	97 e8 00 08 	restore  %g0, %o0, %o3
