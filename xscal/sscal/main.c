@@ -21,16 +21,25 @@ float *sscal(int n , register float alpha ,register float *arr, int incx)
 }
 
 */
-float *sscal(int n , float alpha , float *arr, int incx);
+
+float * __attribute__ ((noinline)) sscal(int n , float alpha , float *arr, int incx)
+{
+	int i=0;	
+	for (i = 0; i < n; i++) 
+    		arr[i] *= alpha;
+
+	return arr;
+   
+}
+
+//float *sscal(int n , float alpha , float *arr, int incx);
+
+float * gen(void);
 float* main()
 {
-	int n=100,incx=1;
-	int i=0;	
-	float arr[100];
-	for (;i<n;i++)
-	arr[i]=4;
-	
-
-	float alpha=1.1;
+	int n=1000,incx=1;
+	float *arr;
+	arr=gen();
+	float alpha=1.5;
 	return sscal(n,alpha,&arr[0],incx);
 }

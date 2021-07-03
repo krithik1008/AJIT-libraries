@@ -18,11 +18,22 @@ unsigned int *u32scal(int n , unsigned int alpha , unsigned int *arr, int incx)
 	return arr;
 }
 */
-unsigned int *u32scal(int n , unsigned int alpha , unsigned int *arr, int incx);
+unsigned int * __attribute__((noinline)) u32scal(int n , unsigned int alpha , unsigned int *arr, int incx)
+{
+	int k=0;
+	for (;k<n;k++)
+	arr[k]*=alpha;
+	
+	return arr;
+}
+
+//unsigned int *u32scal(int n , unsigned int alpha , unsigned int *arr, int incx);
+unsigned int* gen(void);
 unsigned int *main()
 {
-	int n=7,incx=1;	
-	unsigned int arr[7]={4,3,2,5,1,7,8};
+	int n=1000,incx=1;	
+	unsigned int *arr;
+	arr=gen();
 	unsigned int alpha=100;
 	return u32scal(n,alpha,&arr[0],incx);
 }

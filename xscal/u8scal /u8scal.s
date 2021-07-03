@@ -15,46 +15,32 @@
 .type u8scal, #function
 
 u8scal:
-
       save  %sp, -104, %sp
       !st  %i0, [ %fp + 0x44 ]	!n
-      !mov  %i1, %g1				!alpha
+      !mov  %i1, %g1			!alpha
       !st  %i2, [ %fp + 0x4c ]	!arr0
       !st  %i3, [ %fp + 0x50 ]	!incx
-      !stb  %g1, [ %fp + 0x48 ]	!alpha
 
 	  mov %i2, %g4				! arr
 	  !set 0x40000008, %g4
 
-	  clr %l0		!l0 l1 l2 l3 used 
-	  clr %l1		!for vectorization  
-	  
-
-      mov %i1, %l0			!
-	  sll %l0, 8, %g1		!
+      mov %i1, %l0			! l0 l1 l2 l3 used 
+	  sll %l0, 8, %g1		! for vectorization  
 	  or %g1, %l0, %l0		! forming 8 alphas
 	  sll %l0, 16, %g1		!
 	  or %g1, %l0, %l0		!
-	  
-      mov %g0, %l4	!i=0
-	  
+
       b  while
       mov %l0, %l1		!8 alphas delay slot filling 
 
-body: 
-	  ldd [%g3], %l2			! can be optimized with this
-
-      vumuld8 %l0, %l2, %l2	  ! vector multiplication
-
-	  std %l2, [%g3]				! can be optimized with this
-
-      add  %i0, -8, %i0		!n-=8 remaining elements
-      add  %l4, 8, %l4		!i+=8 address index
-
+body: vumuld8 %l0, %l2, %l2		  ! vector multiplication
+	  std %l2, [%g4]				
+      add  %i0, -8, %i0			!n-=8 remaining elements
+      add %g4, 8 ,%g4
 while:
       cmp  %i0, 7
       bg  body
-      add %g4, %l4 ,%g3
+      ldd [%g4], %l2			! can be optimized with this
  
 	  cmp  %i0 ,0			! if no elements left
 	  be def				! exit the function
@@ -62,77 +48,70 @@ while:
 
 !xxxxxxxxxxxx processing remainng elements xxxxxxxxxxx! 
 
-o:    ldub  [ %g3 ], %l2	! 7 conditional load
-	  add  %i0, -1, %i0		! instructions, and they 
-      cmp  %i0 ,0			! branch to corresponding 
-	  be,a one				! store instructions
-	  umul %l2, %l0, %l2
+o:    ldub  [ %g4 ], %l2	! 7 conditional load 
+      cmp  %i0 ,1			! instructions, and they
+	  be,a one				! branch to corresponding 
+	  umul %l2, %l0, %l2	! store instructions
 
-tw:	  ldub  [ %g3 +1 ], %l5
+tw:	  ldub  [ %g4 +1 ], %l5
 	  sll  %l5, 8, %l5
 	  or %l5, %l2, %l2
-	  add  %i0, -1, %i0
-      cmp  %i0 ,0
+      cmp  %i0 ,2
 	  be,a two
 	  vumuld8 %l2, %l0, %l2
 	
-th:	  ldub  [ %g3 + 2 ], %l5
+th:	  ldub  [ %g4 + 2 ], %l5
 	  sll  %l5, 16, %l5
 	  or %l5, %l2, %l2
-	  add  %i0, -1, %i0
-      cmp  %i0 ,0
+      cmp  %i0 ,3
 	  be,a thr
 	  vumuld8 %l2, %l0, %l2
 
-fr:	  ldub  [ %g3 + 3 ], %l5
+fr:	  ldub  [ %g4 + 3 ], %l5
 	  sll  %l5, 24, %l5
 	  or %l5, %l2, %l2
-	  add  %i0, -1, %i0
-      cmp  %i0 ,0
+      cmp  %i0 ,4
 	  be,a for
 	  vumuld8 %l2, %l0, %l2
 
-fv:	  ldub  [ %g3 + 4 ], %l3
-	  add  %i0, -1, %i0
-      cmp  %i0 ,0
+fv:	  ldub  [ %g4 + 4 ], %l3
+      cmp  %i0 ,5
 	  be,a fiv
 	  vumuld8 %l2, %l0, %l2
 
-sx:	  ldub  [ %g3 + 5 ], %l5
+sx:	  ldub  [ %g4 + 5 ], %l5
 	  sll  %l5, 8, %l5
 	  or %l5, %l3, %l3
-	  add  %i0, -1, %i0
-      cmp  %i0 ,0
+      cmp  %i0 ,6
 	  be,a six
 	  vumuld8 %l2, %l0, %l2
 
-sv:	  ldub  [ %g3 + 6 ], %l5
+sv:	  ldub  [ %g4 + 6 ], %l5
 	  sll  %l5, 16, %l5
 	  or %l5, %l3, %l3
 
 	  vumuld8 %l2, %l0, %l2
 
 sev:  srl %l3, 16, %l5			! 7 conditional store
-	  stb %l5, [%g3+6]			! instructions
+	  stb %l5, [%g4+6]			! instructions
 
 six:  srl %l3, 8, %l5
-	  stb %l5, [%g3+5]
+	  stb %l5, [%g4+5]
 
-fiv:  stb %l3, [%g3+4]
+fiv:  stb %l3, [%g4+4]
 
 for:  srl %l2, 24, %l5
-	  stb %l5, [%g3+3] 
+	  stb %l5, [%g4+3] 
 
 thr:  srl %l2, 16, %l5
-	  stb %l5, [%g3+2] 
+	  stb %l5, [%g4+2] 
 
 two:  srl %l2, 8, %l5
-	  stb %l5, [%g3+1] 
+	  stb %l5, [%g4+1] 
 
-one:  stb %l2, [%g3]  	
+one:  stb %l2, [%g4]  	
 
-def:
-      mov  %i2, %i0			! exit
+def:  mov  %i2, %i0			! exit
       restore 
       retl 
       nop 

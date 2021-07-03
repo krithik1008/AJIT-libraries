@@ -28,19 +28,27 @@ switch(n)
 	return arr ;
 
 }
+
 */
-
-unsigned char *u8scal(int n , unsigned char alpha , unsigned char *arr, int incx);
-unsigned char *main()
+unsigned char* __attribute__ ((noinline)) u8scal(int n , unsigned char alpha , unsigned char *arr, int incx)
 {
-	int n=108,incx=1;	
-	int i=0;
-	unsigned char arr[108];
-
-	for (;i<n;i++)
-	arr[i]=1;
-	arr[107]=5;
+	int k=0;
+	for (;k<n;k++)
+	arr[k]*=alpha;
 	
-	unsigned char alpha=5;
+	return arr;
+}
+
+//unsigned char *u8scal(int n , unsigned char alpha , unsigned char *arr, int incx);
+unsigned char *gen(void);
+unsigned char * main()
+{
+	
+	int n=100,incx=1;	
+	unsigned char *arr;
+	arr=gen();	
+	unsigned char alpha=3;
 	return u8scal(n,alpha,&arr[0],incx);
+	
+	
 }
