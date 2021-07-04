@@ -2,6 +2,9 @@
 !email  : krithik.sankar10@gmail.com
 !date   : 16th June 2021
 
+!array y starting address is returned in i0 register
+!starting address of the array must be double word aligned in order to use ldd and std insts
+
 !.section ".bss"
 !.common datak,400,4
 
@@ -18,9 +21,10 @@
 		st  %i4, [ %fp + 0x54 ]	!arr y
 		st  %i5, [ %fp + 0x58 ] !incy
 
-		!set  datak, %g4			!results stored in mem
-		
-		mov 0, %g5		
+		!set  datak, %g4		!results stored in mem		
+		mov 0, %l6			!i=0
+		mov 8, %g2			!registers for effective traversal of array
+		mov -4,%g3		
 		
 		mov  %i1, %l4			!alpha
 		sll %l4, 16, %g1
@@ -28,101 +32,65 @@
       		mov %l4,%l5			!alpha
 
 		b check	
-		nop	
+		mov %i0, %l7			!l7=n
 
-      loop:	/*      		
-		lduh  [ %g2 ], %l0		!arr &x[0]
-      		lduh [ %g2 + 2 ], %g3	
-		sll %g3, 16, %g3
-		or %g3, %l0, %l0
-		lduh [ %g2 + 4 ], %l1	
-		lduh [ %g2 + 6 ], %g3	
-      		sll %g3, 16, %g3
-		or %g3, %l1, %l1
-		*/
-		ldd [%i2+%g1], %l0
-	
-		vumuld16 %l0, %l4, %l6		!multiply (x*alpha)
-		/*      		
-		lduh  [ %g2 ], %l2		!arr &y[0]
-      		lduh [ %g2 + 2 ], %g3	
-		sll %g3, 16, %g3
-		or %g3, %l2, %l2
-		lduh [ %g2 + 4 ], %l3	
-		lduh [ %g2 + 6 ], %g3	
-      		sll %g3, 16, %g3
-		or %g3, %l3, %l3
-		*/
-		ldd [%i4+ %g1], %l2
-
-		vaddd16 %l2, %l6, %l0		!add (x*alpha)+y
-
-		/*		
-		sth %l0, [%g4 + %g1]		!storing back into y
-	
-		srl %l0, 16, %l0
-		add %g1, 2, %g1
-		sth %l0, [%g4 + %g1]
-
-		add %g1, 2, %g1
-		sth %l1, [%g4 + %g1]
-
-		srl %l1, 16, %l1
-		add %g1, 2, %g1
-		sth %l1, [%g4 + %g1]
-		*/
+      loop:	ldd [%i4 + %l6], %l2	
 		
-		std %l0, [%i4+%g1]
-		!std %l0, [%g4+%g1]
+		vumuld16 %l0, %l4, %l0		!multiply (x*alpha)
+		vaddd16 %l2, %l0, %l2		!add (x*alpha)+y
+		
+		std %l2, [%i4+%l6]
 
-		add  %i0, -4, %i0		! n=n-4
- 		add  %g5, 4, %g5		! i=i+4	update i
+		vaddd32 %l6, %g2, %l6  
+
+		!add  %l7, -4, %l7		! n=n-4
+ 		!add  %l6, 8, %l6		! i=i+4	update i
 	
 
       
-     	check:	cmp  %i0, 3			!if i< n
+     	check:	cmp  %l7, 3			!if i< n
      		bg  loop 			!go to body of for
-     		add  %g5, %g5, %g1		!i !delay slot filling 
-
+		ldd [%i2 + %l6], %l0   		
+		!add  %l6, %l6, %g1		!delay slot filling 
 
 
 	!calculation of last 3 elements has to be done using 32 bit instructions
 
-		cmp %i0, 1
+		cmp %l7, 1
 		be one	
-		lduh [%i2 + %g1], %g2
+		lduh [%i2 + %l6], %g2
 
-		cmp %i0, 2
+		cmp %l7, 2
 		be two
-		lduh [%i2 + %g1], %g2
+		lduh [%i2 + %l6], %g2
 
-		cmp %i0, 3
+		cmp %l7, 3
 		bne store
 		mov  %i4, %i0			! returning the same array
 
-		lduh [%i2 + %g1], %g2
+		lduh [%i2 + %l6], %g2
 		umul %g2, %i1, %g2
-		lduh [%i4 + %g1], %g3
+		lduh [%i4 + %l6], %g3
 		add %g2, %g3, %g2
-		!sth %g2, [%g4+%g1]
-		sth %g2, [%i4+%g1]
-		add %g1, 2, %g1
+		!sth %g2, [%g4+%l6]
+		sth %g2, [%i4+%l6]
+		add %l6, 2, %l6
 
-		lduh [%i2 + %g1], %g2	
+		lduh [%i2 + %l6], %g2	
 	two:	umul %g2, %i1, %g2
-		lduh [%i4 + %g1], %g3
+		lduh [%i4 + %l6], %g3
 		add %g2, %g3, %g2
-		!sth %g2, [%g4+%g1]
-		sth %g2, [%i4+%g1]
-		add %g1, 2, %g1
+		!sth %g2, [%g4+%l6]
+		sth %g2, [%i4+%l6]
+		add %l6, 2, %l6
 
-		lduh [%i2 + %g1], %g2
+		lduh [%i2 + %l6], %g2
 	one:	umul %g2, %i1, %g2
-		lduh [%i4 + %g1], %g3
+		lduh [%i4 + %l6], %g3
 		add %g2, %g3, %g2
-		!sth %g2, [%g4+%g1]
-		sth %g2, [%i4+%g1]
-		add %g1, 2, %g1	
+		!sth %g2, [%g4+%l6]
+		sth %g2, [%i4+%l6]
+		add %l6, 2, %l6	
      			
      		mov  %i4, %i0			! returning the same array
      	store:	restore 

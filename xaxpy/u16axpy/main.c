@@ -21,17 +21,21 @@ unsigned short int *u16axpy(int n,unsigned int alpha,unsigned short int *x,int i
   	}
 	return Y;
 }*/
+unsigned short int* genx();
+unsigned short int* geny();
 unsigned short int* main()
 {
-	int n=100,incx=1,incy=1;	
-	unsigned short x[100];
-	unsigned short y[100];
+	int n=1000,incx=1,incy=1;	
+	unsigned short int* x=genx();
+	unsigned short int* y=geny();
+	//unsigned short int x[8]={1,2,3,4,5,6};
+	//unsigned short int y[8]={1,1,1,1,1,1};
 	unsigned int alpha=3;
-	int i=0;
-	for(;i<n;i++)
+	//int i=0;
+	/*for(;i<n;i++)
 	{
 		x[i]=i;
 		y[i]=2;
-	}
+	}*/
 	return u16axpy(n,alpha,&x[0],incx,&y[0],incy);
 }

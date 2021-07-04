@@ -26,8 +26,7 @@
       		b  check
       		mov  1, %l2		!storing result
 
-      loop:	add  %i1, %g1, %g2	
-      		ld  [ %g2 ], %f9	!loading x[i]
+      loop:	ld  [ %g1+%i1 ], %f9	!loading x[i]
 		fabss %f9,%f9
       		fcmpes  %f9, %f1
       		fbule  check 

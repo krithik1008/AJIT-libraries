@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 int isamax(int N,float *X,int incX);
-/*{
+/*int isamax_1(int N,float *X,int incX)
+{
 	float max=0.0;
 	int ix=0,result=0,i=0;
 	if (incX <= 0)
@@ -17,12 +18,15 @@ int isamax(int N,float *X,int incX);
 
 	return result+1;
 }*/
+float* genx();
 int main()
 {
-	int n=1000,incx=1;	
-	float x[1000];
-	int i=0;
+	int n=100,incx=1;
+	float* x=genx();	
+	//float x[100];
+	/*int i=0;
 	for(;i<n;i++)
 		x[i]=i;
+	*/
 	return isamax(n,&x[0],incx);
 }
