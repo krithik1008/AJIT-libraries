@@ -33,17 +33,33 @@ ce :	// 7 conditional load
 }
 */
 
-short int u8asum(int n, char *arr, int incx);
-
-short int main()
+char u8asum(int n, char *arr, int incx)
 {
-	int n=24,incx=1;
-	int i=1;	
-	char arr[30];
-	arr[0]=0;
-	for (;i<n;i++)
-	arr[i]=-1;
+	
+	int i=0;
+	char sum=0;
+	 for (;i<n; ++i)
+          {
+            
+            if (arr[i] >= 0)
+              sum +=arr[i];
+            else
+              sum += -arr[i];
+          }
 
+	return sum;
+
+}
+
+
+//char u8asum(int n, char *arr, int incx);
+char *gen(void);
+
+char main()
+{
+	int n=1000,incx=1;	
+	char *arr;
+	arr=gen();
 	return u8asum(n,&arr[0],incx);
 }
 

@@ -111,7 +111,7 @@ sx:	    ldsb [ %g3 + 5 ], %l1
 	    be def
 	    add %l0, %l1, %l0
 
-sv:	    ldsb [ %g3 + 5 ], %l1
+sv:	    ldsb [ %g3 + 6 ], %l1
 	    sra %l1,8,%l4			!
 	    xor %l1, %l4, %l1		!abs(x)
 	    sub %l1, %l4, %l1		!
