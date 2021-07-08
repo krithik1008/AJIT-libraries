@@ -17,12 +17,12 @@ unsigned char* genx();
 unsigned char* geny();
 unsigned char main()
 {
-	int n=1000,incx=1,incy=1;	
-	//unsigned char x[10]={1,2,3,4,5,6,7};
-	//unsigned char y[10]={1,2,3,4,5,6,7};
+	int n=6,incx=1,incy=1;	
+	unsigned char x[10]={1,2,3,4,5,6,7};
+	unsigned char y[10]={1,2,3,4,5,6,7};
 	
-	unsigned char* x = genx();
-	unsigned char* y = geny();
+	//unsigned char* x = genx();
+	//unsigned char* y = geny();
 	/*int i=0;
 	for(;i<n;i++)
 	{
