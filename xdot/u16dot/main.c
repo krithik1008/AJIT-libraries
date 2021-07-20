@@ -16,11 +16,11 @@ unsigned short int* genx();
 unsigned short int* geny();
 unsigned short int main()
 {
-	int n=1000,incx=1,incy=1;	
-	unsigned short int* x=genx();
-	unsigned short int* y=geny();
-	//unsigned short int x[8]={1,2,3,4,5,6,7};
-	//unsigned short int y[8]={1,1,1,1,1,1,1};
+	int n=8,incx=1,incy=1;	
+	//unsigned short int* x=genx();
+	//unsigned short int* y=geny();
+	unsigned short int x[8]={1,2,3,4,5,6,7};
+	unsigned short int y[8]={1,1,1,1,1,1,1};
 	
 		
 	//int i=0;
