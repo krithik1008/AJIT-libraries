@@ -23,8 +23,8 @@ matrix operations. Level-1 BLAS perform scalar, vector and vector-vector
 operations. The following level-1 BLAS functions were implemented using
 vector instructions and optimized for the AJIT processor:
 + Xasum : sum of absolute values of the elements of an array
-+ Xscal : scales the elements of the array by constant alpha *x = \*x*
-+ Xaxpy : implements the equation *y=\*x+y* on each element of the array
++ Xscal : scales the elements of the array by constant alpha *x = a\*x*
++ Xaxpy : implements the equation *y=a\*x+y* on each element of the array
 + Xdot : computes the dot product between two arrays: *ans = sum(xi \* yi)*
 + Isamax : finds the largest element of the array
 

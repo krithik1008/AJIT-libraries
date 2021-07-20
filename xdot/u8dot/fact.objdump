@@ -1692,12 +1692,38 @@ Disassembly of section .text:
     1ffc:	01 00 00 00 	nop 
 
 00002000 <main>:
-    2000:	9d e3 bf a0 	save  %sp, -96, %sp
-    2004:	7f ff f8 0c 	call  34 <genx>
-    2008:	b0 10 23 e8 	mov  0x3e8, %i0
-    200c:	b2 10 00 08 	mov  %o0, %i1
-    2010:	7f ff f8 0f 	call  4c <geny>
-    2014:	b4 10 20 01 	mov  1, %i2
-    2018:	b8 10 20 01 	mov  1, %i4
-    201c:	7f ff f8 12 	call  64 <u8dot>
-    2020:	97 e8 00 08 	restore  %g0, %o0, %o3
+    2000:	9d e3 bf 80 	save  %sp, -128, %sp
+    2004:	88 10 20 04 	mov  4, %g4
+    2008:	c0 27 bf e4 	clr  [ %fp + -28 ]
+    200c:	c0 27 bf f4 	clr  [ %fp + -12 ]
+    2010:	86 10 20 05 	mov  5, %g3
+    2014:	84 10 20 06 	mov  6, %g2
+    2018:	82 10 20 07 	mov  7, %g1
+    201c:	b6 10 20 01 	mov  1, %i3
+    2020:	b8 10 20 02 	mov  2, %i4
+    2024:	ba 10 20 03 	mov  3, %i5
+    2028:	c0 37 bf e8 	clrh  [ %fp + -24 ]
+    202c:	f6 2f bf e0 	stb  %i3, [ %fp + -32 ]
+    2030:	f8 2f bf e1 	stb  %i4, [ %fp + -31 ]
+    2034:	fa 2f bf e2 	stb  %i5, [ %fp + -30 ]
+    2038:	c8 2f bf e3 	stb  %g4, [ %fp + -29 ]
+    203c:	c6 2f bf e4 	stb  %g3, [ %fp + -28 ]
+    2040:	c4 2f bf e5 	stb  %g2, [ %fp + -27 ]
+    2044:	c2 2f bf e6 	stb  %g1, [ %fp + -26 ]
+    2048:	c0 37 bf f8 	clrh  [ %fp + -8 ]
+    204c:	f6 2f bf f0 	stb  %i3, [ %fp + -16 ]
+    2050:	f8 2f bf f1 	stb  %i4, [ %fp + -15 ]
+    2054:	fa 2f bf f2 	stb  %i5, [ %fp + -14 ]
+    2058:	c8 2f bf f3 	stb  %g4, [ %fp + -13 ]
+    205c:	c6 2f bf f4 	stb  %g3, [ %fp + -12 ]
+    2060:	c4 2f bf f5 	stb  %g2, [ %fp + -11 ]
+    2064:	c2 2f bf f6 	stb  %g1, [ %fp + -10 ]
+    2068:	92 07 bf e0 	add  %fp, -32, %o1
+    206c:	94 10 20 01 	mov  1, %o2
+    2070:	96 07 bf f0 	add  %fp, -16, %o3
+    2074:	98 10 20 01 	mov  1, %o4
+    2078:	7f ff f7 fb 	call  64 <u8dot>
+    207c:	90 10 20 06 	mov  6, %o0
+    2080:	b0 0a 20 ff 	and  %o0, 0xff, %i0
+    2084:	81 c7 e0 08 	ret 
+    2088:	81 e8 00 00 	restore 
