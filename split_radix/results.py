@@ -1,10 +1,11 @@
+#programme to write the main.results file according to the registers we want
 import random 
 import struct 
 
 f= open("main.results",'w')
 k=0
-n=32
-x=0x400002e8
+n=18
+x=0xffffef4c
 
 while(k<n):
 	f.write("m[")

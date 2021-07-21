@@ -53,14 +53,14 @@ Disassembly of section .text:
 
 000000a4 <body>:
       a4:	a6 04 e0 08 	add  %l3, 8, %l3
-      a8:	95 a0 01 2a 	fabss  %f10, %f10
-      ac:	97 a0 01 2b 	fabss  %f11, %f11
-      b0:	91 a2 28 4a 	vfadd32  %f8, %f10, %f8
+      a8:	95 a0 01 34 	fabss  %f20, %f10
+      ac:	97 a0 01 35 	fabss  %f21, %f11
+      b0:	91 a2 28 54 	vfadd32  %f8, %f20, %f8
 
 000000b4 <for>:
       b4:	80 a4 c0 18 	cmp  %l3, %i0
       b8:	06 bf ff fb 	bl  a4 <body>
-      bc:	d5 1e 40 13 	ldd  [ %i1 + %l3 ], %f10
+      bc:	e9 1e 40 13 	ldd  [ %i1 + %l3 ], %f20
       c0:	10 80 00 08 	b  e0 <k>
       c4:	81 a2 48 28 	fadds  %f9, %f8, %f0
 
