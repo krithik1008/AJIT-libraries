@@ -44,12 +44,9 @@
 		! n=n-4
  		! i=i+4	update i
 	
-
-      
      	check:	cmp  %l6, 7			!if n>7
      		bg  loop 			!go to body of for
 		ldd [%i1+%l7], %l0     		!loading value of array x in l0 l1	!delay slot filling 
-
 
 
 	!calculation of last 7 elements has to be done seperately

@@ -1,0 +1,4 @@
+readelf: Warning: Section '.rodata.cst8' was not dumped because it does not exist!
+readelf: Warning: Section '.rodata.str1.8' was not dumped because it does not exist!
+readelf: Warning: Section '.rodata' was not dumped because it does not exist!
+readelf: Warning: Section '.rodata' was not dumped because it does not exist!

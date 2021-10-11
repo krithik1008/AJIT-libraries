@@ -3,8 +3,8 @@ import struct
 
 f= open("main.results",'w')
 k=0
-n=5
-x=0xffffffa8
+n=10
+x=0xffffffb0
 
 while(k<n):
 	f.write("m[")
